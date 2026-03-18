@@ -1113,12 +1113,10 @@ section {
 
 .for-yes {
     border-left: 4px solid var(--primary);
-    background: linear-gradient(135deg, var(--bg-white), var(--primary-light));
 }
 
 .for-no {
     border-left: 4px solid var(--danger);
-    background: linear-gradient(135deg, var(--bg-white), var(--danger-light));
 }
 
 
