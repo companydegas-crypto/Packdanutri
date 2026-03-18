@@ -1270,26 +1270,3 @@ footer {
         font-size: 4rem;
     }
 }
-
-/* --- CHECKOUT OPTIMIZATION --- */
-.loading-state {
-    gap: 10px;
-    pointer-events: none;
-    opacity: 0.9;
-}
-
-.loading-state i {
-    display: inline-block;
-    animation: spinRedir 0.8s linear infinite;
-    font-size: 1.25rem;
-}
-
-@keyframes spinRedir {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}

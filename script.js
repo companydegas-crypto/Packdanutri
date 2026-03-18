@@ -47,20 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Smooth Auto-Scroll for CTA links (Fallback/Enhancement)
+    // 3. Smooth Scroll — sem bloquear nenhum link, funciona de primeira
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+            // Se o alvo não existir, o link funciona sem interferência
         });
     });
 
@@ -74,27 +71,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Hide/Show glass header só após passar pelo botão CTA principal
     const header = document.querySelector('.glass-header');
-    const heroBtn = document.querySelector('.hero .btn-large'); // Usa o botão exato da primeira seção
+    const heroBtn = document.querySelector('.hero .btn-large');
 
     if (header && heroBtn) {
-        const checkHeaderVisibility = () => {
-            // Posicionamento base do fundo (bottom) do primeiro botão na página 
-            // O getBoundingClientRect() pega a real métrica atual da tela
-            const btnOffset = heroBtn.getBoundingClientRect().bottom + window.scrollY;
+        let lastScrollY = window.scrollY;
+        let ticking = false;
 
-            // Se já passamos do botão
+        const checkHeaderVisibility = () => {
+            const btnOffset = heroBtn.getBoundingClientRect().bottom + window.scrollY;
             if (window.scrollY > btnOffset) {
                 header.classList.remove('hidden');
             } else {
-                header.classList.add('hidden'); // Sempre esconde se subir acima do botão
+                header.classList.add('hidden');
             }
+            ticking = false;
         };
 
-        // Roda ao carregar a página (Evita Bugs caso recarregue no meio da tela)
         checkHeaderVisibility();
 
-        // Roda sempre que houver scroll
-        window.addEventListener('scroll', checkHeaderVisibility, { passive: true });
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(checkHeaderVisibility);
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
@@ -104,23 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
         let startX;
         let scrollLeft;
         let autoScrollTimer;
-        const scrollSpeed = 0.8; // Velocidade suavisada e um pouco mais lenta
+        const scrollSpeed = 0.8;
 
-        // Auto Scroll infinito
         const playMarquee = () => {
             if (!isDown) {
                 marquee.scrollLeft += scrollSpeed;
-                // loop infinito suave
                 if (marquee.scrollLeft >= (marquee.scrollWidth / 2)) {
                     marquee.scrollLeft = 0;
                 }
             }
             autoScrollTimer = requestAnimationFrame(playMarquee);
         };
-        // Inicia
         autoScrollTimer = requestAnimationFrame(playMarquee);
 
-        // Funções para pegar clique/arrasto no Mouse ou Dedo
         const stopAutoScroll = () => isDown = true;
         const startAutoScroll = () => { isDown = false; };
 
@@ -142,11 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - marquee.offsetLeft;
-            const walk = (x - startX) * 2; // Sensibilidade de arrasto
+            const walk = (x - startX) * 2;
             marquee.scrollLeft = scrollLeft - walk;
         });
 
-        // Touch em celulares
         marquee.addEventListener('touchstart', () => stopAutoScroll(), { passive: true });
         marquee.addEventListener('touchend', () => startAutoScroll(), { passive: true });
     }
@@ -161,41 +156,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = btn.querySelector('i');
 
             if (isLiked) {
-                // Remove o like
                 currentLikes -= 1;
                 btn.setAttribute('data-liked', 'false');
                 icon.classList.remove('ph-fill');
                 icon.classList.add('ph');
             } else {
-                // Dá o like
                 currentLikes += 1;
                 btn.setAttribute('data-liked', 'true');
                 icon.classList.remove('ph');
                 icon.classList.add('ph-fill');
             }
 
-            // Atualiza o valor invisivel e o texto com animação
             btn.setAttribute('data-likes', currentLikes);
             countSpan.textContent = currentLikes;
         });
     });
 
-    // 8. Otimização do Checkout - Feedback Imediato
+    // 8. Prefetch do Checkout ao hover (navegadores sem Speculation Rules)
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
-        // Pré-carregamento imediato ao passar o mouse (para navegadores antigos)
         checkoutBtn.addEventListener('mouseenter', function () {
             const prefetch = document.createElement('link');
             prefetch.rel = 'prefetch';
-            prefetch.href = 'https://pagamento.packdanutri.site/checkout/208728958:1';
+            prefetch.href = this.href;
             document.head.appendChild(prefetch);
-        }, { once: true }); // Apenas uma vez por sessão
-
-        checkoutBtn.addEventListener('click', function (e) {
-            // Pequeno delay visual para feedback
-            this.style.pointerEvents = 'none';
-            this.innerHTML = '<i class="ph-fill ph-spinner-gap"></i> Instantâneo...';
-            this.classList.add('loading-state');
-        });
+        }, { once: true });
     }
 });
