@@ -75,13 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Hide/Show glass header só após passar pelo botão CTA principal
     const header = document.querySelector('.glass-header');
     const heroBtn = document.querySelector('.hero .btn-large'); // Usa o botão exato da primeira seção
-    
+
     if (header && heroBtn) {
         const checkHeaderVisibility = () => {
             // Posicionamento base do fundo (bottom) do primeiro botão na página 
             // O getBoundingClientRect() pega a real métrica atual da tela
             const btnOffset = heroBtn.getBoundingClientRect().bottom + window.scrollY;
-            
+
             // Se já passamos do botão
             if (window.scrollY > btnOffset) {
                 header.classList.remove('hidden');
@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let scrollLeft;
         let autoScrollTimer;
         const scrollSpeed = 0.8; // Velocidade suavisada e um pouco mais lenta
-        
+
         // Auto Scroll infinito
         const playMarquee = () => {
-            if(!isDown) {
+            if (!isDown) {
                 marquee.scrollLeft += scrollSpeed;
                 // loop infinito suave
                 if (marquee.scrollLeft >= (marquee.scrollWidth / 2)) {
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Funções para pegar clique/arrasto no Mouse ou Dedo
         const stopAutoScroll = () => isDown = true;
         const startAutoScroll = () => { isDown = false; };
-        
+
         marquee.addEventListener('mousedown', (e) => {
             isDown = true;
             marquee.classList.add('active');
@@ -179,4 +179,23 @@ document.addEventListener('DOMContentLoaded', () => {
             countSpan.textContent = currentLikes;
         });
     });
+
+    // 8. Otimização do Checkout - Feedback Imediato
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        // Pré-carregamento imediato ao passar o mouse (para navegadores antigos)
+        checkoutBtn.addEventListener('mouseenter', function () {
+            const prefetch = document.createElement('link');
+            prefetch.rel = 'prefetch';
+            prefetch.href = 'https://pagamento.packdanutri.site/checkout/208728958:1';
+            document.head.appendChild(prefetch);
+        }, { once: true }); // Apenas uma vez por sessão
+
+        checkoutBtn.addEventListener('click', function (e) {
+            // Pequeno delay visual para feedback
+            this.style.pointerEvents = 'none';
+            this.innerHTML = '<i class="ph-fill ph-spinner-gap"></i> Instantâneo...';
+            this.classList.add('loading-state');
+        });
+    }
 });
