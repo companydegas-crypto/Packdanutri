@@ -1270,3 +1270,71 @@ footer {
         font-size: 4rem;
     }
 }
+
+/* --- IDENTIFICATION PHRASE --- */
+.identification-phrase {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    padding: 16px 20px;
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    line-height: 1.5;
+}
+
+/* --- FOR WHO SECTION --- */
+.for-who {
+    padding: 4rem 0;
+}
+
+.for-card {
+    padding: 2rem;
+}
+
+.for-card h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.15rem;
+}
+
+.for-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.for-card ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.for-yes ul li i {
+    color: var(--primary);
+}
+
+.for-no ul li i {
+    color: var(--danger);
+}
+
+.for-yes {
+    border-left: 4px solid var(--primary);
+}
+
+.for-no {
+    border-left: 4px solid var(--danger);
+}
+
+/* --- OFFER INTRO --- */
+.offer-intro {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
