@@ -52,6 +52,9 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Stability for high traffic content */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* Base Styles */
@@ -256,9 +259,7 @@ section {
 
 /* --- URGENCY BANNER --- */
 .urgency-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     background: linear-gradient(90deg, #EF4444, #DC2626);
     color: white;
@@ -321,7 +322,7 @@ section {
 /* --- HERO SECTION --- */
 .hero {
     position: relative;
-    padding-top: 5rem !important;
+    padding-top: 4rem !important;
     padding-bottom: 4rem;
     overflow: hidden;
 }
@@ -1224,37 +1225,33 @@ section {
 
 
 /* --- ANIMATIONS (Reveal on scroll) --- */
-.reveal {
+/* Só esconde se o JS estiver ativo, evitando site "vazio" se o script demorar */
+.js-enabled .reveal,
+.js-enabled .reveal-up,
+.js-enabled .reveal-right {
     opacity: 0;
+}
+
+.js-enabled .reveal {
     transform: translateY(24px);
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-up {
-    opacity: 0;
+.js-enabled .reveal-up {
     transform: translateY(32px);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.reveal-up.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-right {
-    opacity: 0;
+.js-enabled .reveal-right {
     transform: translateX(32px);
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.reveal.active,
+.reveal-up.active,
 .reveal-right.active {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
 }
 
 /* Delay modifiers */
