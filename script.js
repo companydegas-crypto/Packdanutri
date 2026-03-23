@@ -184,11 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// YouTube API Integration Lazy Load (Performance Optimization)
+// YouTube API Integration (Vturb Style)
 let player;
 let ytLoaded = false;
 let ytReady = false;
-let hasInteracted = false;
+let hasUnmuted = false;
 
 function loadYouTubeAPI() {
     if (ytLoaded) return;
@@ -199,14 +199,8 @@ function loadYouTubeAPI() {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
 
-// Lazy load API exactly 1.5 seconds after page load or immediately on first click/scroll
-const lazyTriggers = ['scroll', 'mousemove', 'touchstart', 'keydown'];
-function initLazyYT() {
-    loadYouTubeAPI();
-    lazyTriggers.forEach(e => document.removeEventListener(e, initLazyYT));
-}
-lazyTriggers.forEach(e => document.addEventListener(e, initLazyYT, { once: true, passive: true }));
-setTimeout(loadYouTubeAPI, 1500); // Fallback: load after 1.5s anyway
+// Carregamento imediato para Vturb
+setTimeout(loadYouTubeAPI, 50);
 
 window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('hero-video', {
@@ -232,55 +226,34 @@ window.onYouTubeIframeAPIReady = function () {
 
 function onPlayerReady(event) {
     ytReady = true;
-    const videoOverlay = document.getElementById('video-overlay');
-    player.mute(); // ensure muted play originally
-
-    // Se o usuário já clicou antes da API carregar, toque imediatamente
-    if (hasInteracted) {
-        player.unMute();
-        player.playVideo();
-        if (videoOverlay) videoOverlay.classList.add('playing');
-    }
+    player.mute();
+    player.playVideo(); // Força autoplay sem som no fundo a la' Vturb
 }
 
-const startVideoOnFirstClick = () => {
-    if (!hasInteracted) {
-        hasInteracted = true;
-        loadYouTubeAPI(); // Garante o carregamento acelerado se for o primeiro evento
-
-        const videoOverlay = document.getElementById('video-overlay');
-        if (videoOverlay) {
-            videoOverlay.classList.add('playing');
-        }
-
-        if (ytReady && player) {
-            player.unMute();
-            player.playVideo();
-        }
-
-        document.removeEventListener('click', startVideoOnFirstClick);
-        document.removeEventListener('touchstart', startVideoOnFirstClick);
-    }
-};
-
-document.addEventListener('click', startVideoOnFirstClick);
-document.addEventListener('touchstart', startVideoOnFirstClick, { passive: true });
-
-// Clique específico no overlay/vídeo (após o start automático global)
 document.addEventListener('DOMContentLoaded', () => {
     const videoWrapper = document.querySelector('.video-wrapper');
+    const videoOverlay = document.getElementById('video-overlay');
+
     if (videoWrapper) {
         videoWrapper.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (!hasInteracted) {
-                startVideoOnFirstClick();
-                return;
-            }
+            if (!ytReady || !player || !player.getPlayerState) return;
 
-            if (ytReady && player && player.getPlayerState) {
+            if (!hasUnmuted) {
+                // Primeira interação: começa do zero com áudio
+                hasUnmuted = true;
+                player.seekTo(0);
+                player.unMute();
+                player.playVideo();
+
+                if (videoOverlay) {
+                    videoOverlay.classList.add('playing');
+                    const vturbText = videoOverlay.querySelector('.vturb-text');
+                    if (vturbText) vturbText.style.display = 'none';
+                }
+            } else {
+                // Cliques subsequentes: Pausa / Retoma
                 const state = player.getPlayerState();
-                const videoOverlay = document.getElementById('video-overlay');
-
                 if (state === YT.PlayerState.PLAYING) {
                     player.pauseVideo();
                 } else if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.BUFFERING || state === -1) {
@@ -288,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     player.unMute();
                     if (videoOverlay) {
                         videoOverlay.classList.add('playing');
-                        const span = videoOverlay.querySelector('span');
+                        const span = videoOverlay.querySelector('span:last-child');
                         const icon = videoOverlay.querySelector('i');
                         if (span) span.textContent = 'Clique para ouvir';
                         if (icon) {
@@ -304,18 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function onPlayerStateChange(event) {
     const videoOverlay = document.getElementById('video-overlay');
-    const videoCover = document.getElementById('video-cover');
-
-    // Remove cover thumb seamlessly only when it really is playing
-    if (event.data === YT.PlayerState.PLAYING && videoCover) {
-        videoCover.style.opacity = '0';
-        setTimeout(() => { if (videoCover) videoCover.style.display = 'none'; }, 500);
-    }
 
     if (event.data === YT.PlayerState.ENDED) {
         if (videoOverlay) {
             videoOverlay.classList.remove('playing');
-            const span = videoOverlay.querySelector('span');
+            const span = videoOverlay.querySelector('span:last-child');
+            const vturbText = videoOverlay.querySelector('.vturb-text');
+            if (vturbText) vturbText.style.display = 'none';
             const icon = videoOverlay.querySelector('i');
             if (span) span.textContent = 'Ver de novo';
             if (icon) {

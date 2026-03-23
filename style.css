@@ -476,6 +476,15 @@ section {
     letter-spacing: 0.1em;
 }
 
+.vturb-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--primary);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
