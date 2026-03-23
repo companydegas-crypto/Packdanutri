@@ -186,7 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // YouTube API Integration
 let player;
-function onYouTubeIframeAPIReady() {
+
+// Load YouTube API asynchronously to prevent race conditions with defer
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('hero-video', {
         videoId: 'A1unhM73Y28',
         playerVars: {
@@ -213,7 +220,7 @@ function onPlayerReady(event) {
     if (videoOverlay) {
         videoOverlay.addEventListener('click', () => {
             const playerState = player.getPlayerState();
-            
+
             if (playerState === YT.PlayerState.PAUSED || playerState === YT.PlayerState.BUFFERING || playerState === -1) {
                 player.playVideo();
                 player.unMute();
