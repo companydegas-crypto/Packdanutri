@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack da Nutri - Entregável Oficial</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            /* O verde característico do PDF antigo */
+            --primary-dark: #059669;
+            --dark: #111827;
+            --text-main: #374151;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-page: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Página Master A4 */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 40px auto;
+            background: var(--bg-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-bottom: 30mm;
+            page-break-after: always;
+        }
+
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            padding: 30px 40px;
+        }
+
+        .welcome-title {
+            text-align: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .welcome-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .box {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: #fff;
+        }
+
+        .box-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Item Master Link */
+        .access-item-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .access-item-main h3 {
+            font-size: 18px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 8px 0;
+        }
+
+        /* Listagem de Links Bonus */
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+        }
+
+        .link-list li:last-child {
+            border-bottom: none;
+        }
+
+        .link-list li i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Listagem Texto (30 ideias, legendas) */
+        .text-list {
+            list-style: none;
+        }
+
+        .text-list li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-main);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .text-list li:last-child {
+            border-bottom: none;
+        }
+
+        .block-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 16px;
+            margin: 25px 0 10px;
+            text-transform: uppercase;
+        }
+
+        /* Formatação do Guia de Persuasão (E-Book) */
+        .ebook-cover {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .ebook-cover-badge {
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .ebook-cover h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .ebook-cover p {
+            font-size: 18px;
+            color: #9ca3af;
+        }
+
+        .chapter {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+
+        .chapter h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .chapter p {
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .highlight {
+            background-color: #ecfdf5;
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .example-bad {
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        /* Footer Info */
+        .support-box {
+            text-align: center;
+            background-color: #f3f4f6;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .support-box h4 {
+            color: #ef4444;
+            margin-bottom: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Print Settings */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .a4-page {
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PÁGINA 1: ACESSOS E LINKS -->
+    <div class="a4-page">
+        <div class="header">
+            <h1>Pack da Nutri</h1>
+        </div>
+
+        <div class="container">
+            <h2 class="welcome-title">Bem-vinda ao seu Pack da Nutri!</h2>
+            <p class="welcome-subtitle">Abaixo estão todos os seus acessos estratégicos. Prepare-se para transformar seu
+                Instagram.</p>
+
+            <div class="box">
+                <div class="box-title">1. Acesso aos Templates</div>
+                <div class="access-item-main">
+                    <h3>150+ Templates Estratégicos no Canva</h3>
+                    <a href="#" class="btn">ABRIR CANVA</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-title">2. Bônus em Templates</div>
+                <ul class="link-list">
+                    <li>
+                        <span><i>></i> Capas de Destaque profissionais</span>
+                        <a href="#" class="btn btn-outline">ACESSAR</a>
+                    </li>
+                    <li>
+                        <span><i>></i> Cardápio Semanal Estratégico</span>
+                        <a href="#" class="btn btn-outline">ACESSAR</a>
+                    </li>
+                    <li>
+                        <span><i>></i> Caixinha de Perguntas (Modelo 1)</span>
+                        <a href="#" class="btn btn-outline">ACESSAR</a>
+                    </li>
+                    <li>
+                        <span><i>></i> Caixinha de Perguntas (Modelo 2)</span>
+                        <a href="#" class="btn btn-outline">ACESSAR</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="support-box">
+                <h4>PRECISA DE AJUDA?</h4>
+                <p>Suporte e-mail: suporte@packdanutri.site</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: GUIA DE PERSUASÃO -->
+    <div class="a4-page">
+        <div class="container">
+            <div class="ebook-cover">
+                <div class="ebook-cover-badge">Guia Bônus</div>
+                <h2>COMO NUTRICIONISTAS ATRAEM PACIENTES PELO INSTAGRAM</h2>
+                <p>(sem precisar virar influencer ou postar todos os dias sem resultado)</p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 1 — O erro que faz seu Instagram não trazer pacientes</h3>
+                <p>Deixa eu começar sendo honesto com você.</p>
+                <p>O problema do seu Instagram não é falta de conhecimento. Você sabe muito mais do que a maioria das
+                    pessoas que te seguem.</p>
+                <p>O problema é outro. Você está tentando ensinar… quando deveria estar fazendo a pessoa se
+                    enxergar.<br>E isso muda tudo.</p>
+                <p>Quando você posta algo como “3 dicas para emagrecer”, você está falando com todo mundo. E quando você
+                    fala com todo mundo, ninguém presta atenção.</p>
+                <p>Agora pensa comigo. Se alguém lê:</p>
+                <div class="highlight">“Você come certo… mas não vê resultado?”</div>
+                <p>Isso não parece um post. Parece uma conversa. E a pessoa para.</p>
+                <p>Porque ela não está pensando “que conteúdo interessante”. Ela está pensando: “sou eu”. Esse é o
+                    primeiro ponto que você precisa entender:</p>
+                <p>Você não está competindo com outros nutricionistas. Você está competindo com a atenção de alguém que
+                    está rolando o feed sem pensar. E a única forma de vencer isso é simples:</p>
+                <p><strong>Você precisa falar algo que a pessoa sinta.</strong></p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 2 — Por que ensinar demais atrapalha você</h3>
+                <p>Existe uma armadilha muito comum no seu nicho. Quanto mais o nutricionista sabe, mais ele tenta
+                    mostrar que sabe. E quanto mais ele faz isso, menos ele vende.</p>
+                <p>Parece estranho, mas faz sentido quando você entende o comportamento das pessoas. Quem está no
+                    Instagram não quer estudar. Não quer entender processo. Não quer aula. Ela quer sentir que existe
+                    uma solução.</p>
+                <p>Quando você explica tudo, você tira o motivo dela te procurar. Agora observa essa diferença:</p>
+
+                <div class="example-bad">
+                    “Para emagrecer, você precisa de déficit calórico.”<br>
+                    <strong>Correto. Técnico. Completo. E completamente ignorado.</strong>
+                </div>
+
+                <p>Agora olha isso:</p>
+                <div class="highlight">“Você pode estar fazendo tudo certo… e mesmo assim não emagrecer.”</div>
+
+                <p>Isso cria uma pequena tensão na cabeça da pessoa. Uma dúvida. E essa dúvida é o que move o
+                    comportamento.</p>
+                <p>É ela que faz a pessoa continuar lendo. É ela que faz a pessoa entrar no perfil. E é ela que faz a
+                    pessoa te chamar.</p>
+                <p>Você não precisa provar que sabe tudo. Você precisa mostrar que entende o problema melhor do que ela.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: GUIA DE PERSUASÃO CONT. -->
+    <div class="a4-page">
+        <div class="container" style="padding-top: 20px;">
+            <div class="chapter">
+                <h3>Capítulo 3 — Como fazer alguém parar de rolar o feed</h3>
+                <p>Agora vamos falar do momento mais importante de todos. O segundo em que a pessoa vê seu post. Se você
+                    perde esse momento, acabou.</p>
+                <p>E aqui entra uma das coisas mais importantes que você vai aprender: <strong>Você precisa abrir um
+                        “loop”.</strong> Algo que não está completo. Algo que faz a pessoa querer entender.</p>
+
+                <p>Por exemplo:</p>
+                <div class="highlight">
+                    “Você começa animado…”<br>
+                    <span style="font-size: 13px;">(Só isso já cria uma expectativa. Agora completa:)</span><br>
+                    “…e desiste no meio do caminho.”
+                </div>
+
+                <p>Pronto. Você acabou de descrever a realidade de muita gente em duas linhas. Simples. Direto. Sem
+                    esforço. E o mais importante: impossível de ignorar.</p>
+
+                <div class="example-bad">Agora compara com: “Persistência é importante no processo de emagrecimento.”
+                </div>
+
+                <p>Você sente a diferença? Um parece conversa. O outro parece palestra. E ninguém entra no Instagram
+                    querendo assistir palestra.</p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 4 — A estrutura invisível que faz um post funcionar</h3>
+                <p>Você não precisa de textos longos. Na verdade, quanto menor, melhor. Mas não é sobre escrever pouco.
+                    É sobre escrever certo.</p>
+                <p>A estrutura mais forte que existe é simples: Primeiro você abre. Depois você direciona.</p>
+
+                <div class="highlight">
+                    “Você não precisa cortar tudo…” (Aqui você quebrou uma crença.)<br><br>
+                    “Só precisa aprender a equilibrar.” (Aqui você trouxe alívio.)
+                </div>
+
+                <p>E pronto. Você não explicou como. Você não entrou em detalhe. Mas você fez algo muito mais
+                    importante: <strong>Você fez a pessoa confiar.</strong></p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 5 — O segredo de não entregar tudo</h3>
+                <p>Esse é o ponto onde a maioria erra. E erra feio. Existe uma vontade natural de explicar. De ensinar.
+                    De entregar valor.</p>
+                <p>Mas no Instagram, valor não é quantidade de informação. <strong>Valor é clareza.</strong></p>
+                <p>Quando você explica demais, você tira a curiosidade. E sem curiosidade, não existe ação.</p>
+                <p>Agora pensa nisso: Se a pessoa entende tudo sozinha… por que ela falaria com você?</p>
+
+                <div class="highlight">Exemplo: “Você está tentando… mas do jeito que mais dificulta.”</div>
+
+                <p>Você não explicou qual é o erro. E é exatamente isso que faz funcionar. Porque agora a pessoa quer
+                    saber. E quando ela quer saber, ela se aproxima.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: GUIA DE PERSUASÃO CONT. & OUTROS BÔNUS -->
+    <div class="a4-page">
+        <div class="container" style="padding-top: 20px;">
+            <div class="chapter">
+                <h3>Capítulo 6 — Como fazer a pessoa te chamar sem pedir</h3>
+                <p>Aqui está uma das partes mais importantes. Você não precisa vender diretamente. Na verdade, quanto
+                    mais direto você for, menos funciona.</p>
+
+                <div class="example-bad">Quando você fala: “Agende sua consulta” Você está colocando pressão. E pressão
+                    afasta.</div>
+
+                <div class="highlight">Agora quando você diz: “Talvez você não precise fazer isso sozinho”</div>
+
+                <p>Você não está vendendo. Você está abrindo uma possibilidade. E isso muda completamente a reação da
+                    pessoa. Ela não sente que está sendo empurrada. Ela sente que está sendo entendida. E quando alguém
+                    se sente entendido, ela se aproxima.</p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 7 — Autoridade não é o que você pensa</h3>
+                <p>Você não precisa parecer inteligente. Você precisa parecer claro.</p>
+                <p>Muitos nutricionistas tentam mostrar autoridade usando termos difíceis, explicações complexas e
+                    linguagem técnica. Mas isso cria distância. Agora pensa nessa frase:</p>
+
+                <div class="highlight" style="text-align: center; font-size: 18px; font-weight: 700;">
+                    “Se fosse só cortar comida… todo mundo conseguiria.”
+                </div>
+
+                <p>Simples. Direta. E extremamente forte. Isso é autoridade de verdade. Não é sobre impressionar. É
+                    sobre fazer sentido.</p>
+            </div>
+
+            <div class="chapter">
+                <h3>Capítulo 8 e Conclusão</h3>
+                <p>Eles não são os mais bonitos. Nem os mais completos. Eles são os mais humanos.</p>
+                <ul style="margin-left: 20px; margin-bottom: 20px; font-size: 15px;">
+                    <li>Conteúdos que falam de frustração funcionam.</li>
+                    <li>Conteúdos que mostram ciclos funcionam.</li>
+                    <li>Conteúdos que quebram crenças funcionam.</li>
+                </ul>
+                <p>Porque eles fazem a pessoa pensar: <strong>“isso é exatamente o que acontece comigo”</strong>.</p>
+
+                <div class="highlight"
+                    style="background-color: var(--dark); color: white; border-color: var(--primary);">
+                    Se você continuar fazendo conteúdo para ensinar, você vai ter um perfil organizado. Bonito. Correto.
+                    E vazio.<br><br>
+                    <strong>No fim, não é sobre postar mais. Nem sobre postar melhor. É sobre falar da forma
+                        certa.</strong>
+                </div>
+            </div>
+
+            <!-- ANEXOS ANTIGOS DO PDF ORIGINAL: 30 Ideias e Legendas -->
+            <div class="box" style="margin-top: 50px;">
+                <div class="box-title">Bônus: 30 Ideias de Stories</div>
+                <ul class="text-list">
+                    <li>1. Conte sua história na nutrição</li>
+                    <li>2. Quadro semanal prático</li>
+                    <li>3. Mostre os bastidores do seu trabalho</li>
+                    <li>4. Caixa de perguntas estratégica</li>
+                    <li>5. Quebre um mito silencioso sobre metabolismo</li>
+                    <li><i>... (Todas as ideias completas no seu material bônus associado)</i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- PÁGINA 5: BÔNUS LEGENDAS -->
+    <div class="a4-page">
+        <div class="container">
+            <div class="ebook-cover" style="padding: 40px; margin-bottom: 30px; background: var(--primary);">
+                <div class="ebook-cover-badge" style="background: white; color: var(--primary);">Bônus Exclusivo</div>
+                <h2 style="color: white; font-size: 28px; font-family: 'Plus Jakarta Sans', sans-serif;">+30 LEGENDAS
+                    PRONTAS</h2>
+                <p style="color: rgba(255,255,255,0.9); font-size: 16px;">Textos estratégicos que incentivam mensagens
+                    no Direct.</p>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 1 — CONEXÃO <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(agora
+                        parece humano)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>Tem muita gente que chega pra mim falando:<br>“eu tô fazendo tudo certo… mas
+                    não vejo resultado”<br><br>E, na maioria das vezes, não é falta de esforço.<br><br>É só que ninguém
+                    mostrou o caminho certo ainda.<br><br>Se você já se sentiu assim, me conta aqui.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>Eu vejo muita gente esperando o momento ideal pra começar…<br><br>mais tempo,
+                    mais disposição, mais organização.<br><br>Mas na prática, quem evolui<br>é quem começa mesmo sem
+                    tudo perfeito.<br><br>Você também sente que fica esperando demais às vezes?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>Nem sempre é falta de disciplina.<br><br>Às vezes você só está
+                    tentando…<br>sem saber exatamente o que ajustar.<br><br>E isso vai cansando.<br><br>Se isso já
+                    aconteceu com você, eu queria entender.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Se alimentar melhor não deveria ser complicado.<br><br>Mas eu sei que, quando
+                    a gente tenta sozinho,<br>acaba virando um ciclo meio frustrante.<br><br>Você já sentiu isso também?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>Tem gente que me fala que já tentou de tudo.<br><br>Mas quando a gente
+                    conversa melhor…<br>percebe que só mudou detalhes, não o caminho.<br><br>Você sente que está nesse
+                    ponto?
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 2 — EDUCATIVO <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(sem
+                        cara de aula)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>Carboidrato virou vilão pra muita gente…<br><br>mas o problema quase nunca é
+                    ele sozinho.<br><br>É o contexto.<br><br>É como ele entra na sua rotina.<br><br>Você já reparou
+                    nisso?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>Pular refeição parece ajudar.<br><br>Mas, na prática, é o que mais leva à
+                    perda de controle depois.<br><br>E isso não é falta de disciplina.<br><br>Você já passou por isso?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>Muita gente acha que precisa cortar tudo que gosta.<br><br>Mas o problema é
+                    que ninguém sustenta isso por muito tempo.<br><br>O difícil não é começar.<br>É manter.<br><br>Como
+                    isso funciona pra você hoje?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 6: BÔNUS LEGENDAS (PARTE 2) -->
+    <div class="a4-page">
+        <div class="container">
+            <div class="chapter" style="padding-top: 20px;">
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Comer saudável não é sobre fazer tudo perfeito.<br><br>É sobre conseguir
+                    repetir o básico<br>mesmo nos dias mais difíceis.<br><br>E isso muda completamente o
+                    resultado.<br><br>Você sente que consegue manter?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>O corpo responde muito mais à constância<br>do que a qualquer estratégia
+                    radical.<br><br>Mas quase ninguém fala disso.<br><br>Você já percebeu isso na prática?
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 3 — QUEBRA DE OBJEÇÃO <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(sem
+                        julgar)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>“Eu não tenho tempo…”<br><br>Mas, ao mesmo tempo, tenta resolver tudo
+                    sozinho<br>e acaba gastando muito mais tempo nisso.<br><br>Talvez não seja só falta de
+                    tempo.<br><br>O que você acha?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>“Eu não consigo seguir dieta”<br><br>Eu escuto muito isso.<br><br>Mas,
+                    geralmente, é porque nunca foi algo feito pra sua rotina.<br><br>Quando encaixa, fica muito mais
+                    leve.<br><br>Você sente isso também?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>“Já tentei e não funcionou”<br><br>Mas, me fala com sinceridade…<br>você teve
+                    direção ou só tentou por conta?<br><br>Porque isso faz diferença.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Não é falta de força de vontade.<br><br>Se fosse, você já teria
+                    conseguido.<br><br>Às vezes é só o jeito que você está tentando.<br><br>Já pensou nisso?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>Se fosse só comer menos…<br><br>não teria tanta gente tentando e
+                    travando.<br><br>Tem mais coisa por trás disso.<br><br>Você já percebeu?
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 4 — AUTORIDADE <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(conversa
+                        real)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>Nutrição não é só sobre estética.<br><br>É sobre como você acorda, como você
+                    vive o dia,<br>como você se sente.<br><br>E isso vai muito além da balança.<br><br>Isso pesa pra
+                    você também?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 7: BÔNUS LEGENDAS (PARTE 3) -->
+    <div class="a4-page">
+        <div class="container" style="padding-top: 20px;">
+            <div class="chapter">
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>Cada corpo responde de um jeito.<br><br>Por isso, copiar o que funcionou pra
+                    alguém<br>raramente funciona igual pra você.<br><br>Você já tentou algo assim?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>O básico funciona.<br><br>Mas fazer o básico todos os dias<br>é o que
+                    realmente muda o resultado.<br><br>E é aí que muita gente trava.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Eu sempre falo isso:<br><br>quanto mais radical, menos sustentável.<br><br>E
+                    no fim, o que não sustenta… não fica.<br><br>Faz sentido pra você?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>O objetivo nunca foi sofrer pra emagrecer.<br><br>É conseguir manter algo que
+                    funcione na sua rotina.<br><br>Sem peso, sem culpa.
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 5 — ENGAJAMENTO <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(parece
+                        conversa)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>Me conta uma coisa:<br><br>o que mais te dificulta hoje<br>quando tenta
+                    melhorar sua alimentação?<br><br>Quero entender de verdade.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>Hoje, pra você, o mais difícil é:<br><br>tempo<br>ou saber o que fazer?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>Se você pudesse ajustar só uma coisa agora<br>na sua alimentação…<br><br>o
+                    que seria?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Você sente que o problema é disciplina<br>ou falta de direção?
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>O que mais te faz recomeçar sempre?
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="block-title"
+                    style="font-size: 18px; color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px;">
+                    BLOCO 6 — CONVERSÃO <span
+                        style="font-size: 14px; font-weight: normal; text-transform: none; color: var(--text-light);">(natural,
+                        sem forçar)</span>
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>1.</strong><br>Se você sente que está tentando…<br>mas não está conseguindo organizar isso
+                    sozinho,<br><br>talvez valha a pena olhar isso com mais calma.<br><br>Se quiser, pode me chamar.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>2.</strong><br>Tem coisa que a gente só consegue ajustar<br>quando entende melhor o que está
+                    acontecendo.<br><br>Se fizer sentido pra você, me chama e a gente conversa.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 8: BÔNUS LEGENDAS (PARTE 4) -->
+    <div class="a4-page">
+        <div class="container" style="padding-top: 20px;">
+            <div class="chapter">
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>3.</strong><br>Nem tudo dá pra resolver sozinho.<br><br>E tudo bem.<br><br>Se você sente que
+                    está nesse ponto,<br>me manda uma mensagem.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>4.</strong><br>Às vezes não é falta de esforço.<br><br>É só falta de clareza.<br><br>Se
+                    quiser, a gente pode olhar isso juntos.
+                </div>
+
+                <div class="highlight"
+                    style="background-color: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <strong>5.</strong><br>Se você já tentou bastante<br>e ainda sente que não encaixou…<br><br>talvez
+                    só esteja faltando ajustar o caminho.<br><br>Se fizer sentido, pode me chamar.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
