@@ -941,8 +941,8 @@ section {
 
 /* --- OFERTA --- */
 .offer-card {
-    background: linear-gradient(145deg, var(--bg-white) 0%, var(--primary-light) 100%);
-    border: 2px solid var(--primary);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 3rem 2rem;
     max-width: 580px;
