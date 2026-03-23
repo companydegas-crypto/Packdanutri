@@ -1067,7 +1067,7 @@ section {
 .bonus-card {
     position: relative;
     border-color: var(--primary-light);
-    background: linear-gradient(to bottom right, var(--bg-white), #F0FDF4);
+    background: var(--bg-white);
 }
 
 .bonus-badge {
