@@ -411,56 +411,88 @@ section {
     margin: 0 auto;
 }
 
-.image-wrapper {
+/* --- HERO VIDEO WRAPPER --- */
+.video-wrapper {
     position: relative;
-}
-
-.image-wrapper img {
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
     width: 100%;
+    aspect-ratio: 9 / 16;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    background: #000;
 }
 
-.floating-badge {
+#hero-video {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Block YouTube native interaction */
+}
+
+.video-overlay {
     position: absolute;
-    background: var(--bg-white);
-    padding: 10px 18px;
-    border-radius: 100px;
-    box-shadow: var(--shadow-lg);
-    font-weight: 600;
-    font-size: 0.825rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
-    gap: 6px;
-    animation: float 4s ease-in-out infinite;
-    z-index: 5;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
 }
 
-.floating-badge i {
-    color: var(--primary);
+.video-overlay.playing {
+    background: transparent;
 }
 
-.badge-1 {
-    top: -16px;
-    right: -8px;
-    animation-delay: 0s;
+.video-overlay.playing .play-button-wrapper {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.badge-2 {
-    bottom: 20px;
-    left: -16px;
-    animation-delay: 2s;
+.play-button-wrapper {
+    text-align: center;
+    color: white;
+    transition: var(--transition);
 }
 
-@keyframes float {
+.play-button-wrapper i {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+    animation: pulse 2s infinite;
+}
 
-    0%,
-    100% {
-        transform: translateY(0);
+.play-button-wrapper span {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
     }
 
     50% {
-        transform: translateY(-12px);
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media(min-width: 992px) {
+    .video-wrapper {
+        max-width: 360px;
     }
 }
 

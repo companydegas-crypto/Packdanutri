@@ -183,3 +183,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     }
 });
+
+// YouTube API Integration
+let player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('hero-video', {
+        videoId: 'A1unhM73Y28',
+        playerVars: {
+            'autoplay': 1,
+            'mute': 1,
+            'controls': 0,
+            'showinfo': 0,
+            'rel': 0,
+            'loop': 1,
+            'playlist': 'A1unhM73Y28',
+            'modestbranding': 1,
+            'playsinline': 1,
+            'iv_load_policy': 3,
+            'disablekb': 1
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    const videoOverlay = document.getElementById('video-overlay');
+    if (videoOverlay) {
+        videoOverlay.addEventListener('click', () => {
+            const playerState = player.getPlayerState();
+            
+            if (playerState === YT.PlayerState.PAUSED || playerState === YT.PlayerState.BUFFERING || playerState === -1) {
+                player.playVideo();
+                player.unMute();
+                videoOverlay.classList.add('playing');
+            } else if (playerState === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                videoOverlay.classList.remove('playing');
+            }
+        });
+    }
+}
