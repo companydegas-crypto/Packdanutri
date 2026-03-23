@@ -717,11 +717,37 @@ section {
 
 
 /* --- COMO FUNCIONA --- */
+.how-it-works-accordion {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-white);
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.how-it-works-accordion[open] {
+    box-shadow: var(--shadow-md);
+}
+
+.how-it-works-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.how-it-works-accordion summary {
+    display: flex !important;
+    align-items: center;
+    outline: none;
+}
+
+.how-it-works-accordion[open] summary i {
+    transform: rotate(180deg);
+}
+
 .steps-grid {
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .step-card {
