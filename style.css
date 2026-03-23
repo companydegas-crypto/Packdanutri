@@ -535,7 +535,8 @@ section {
 
 .marquee-content img {
     height: 280px;
-    width: auto;
+    width: 280px;
+    aspect-ratio: 1 / 1;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     object-fit: cover;
