@@ -193,6 +193,8 @@ tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+let hasInteracted = false;
+
 window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('hero-video', {
         videoId: 'A1unhM73Y28',
@@ -200,35 +202,89 @@ window.onYouTubeIframeAPIReady = function () {
             'autoplay': 1,
             'mute': 1,
             'controls': 0,
-            'showinfo': 0,
             'rel': 0,
-            'loop': 1,
-            'playlist': 'A1unhM73Y28',
+            'loop': 0,
             'modestbranding': 1,
             'playsinline': 1,
             'iv_load_policy': 3,
-            'disablekb': 1
+            'disablekb': 1,
+            'origin': window.location.origin !== 'null' ? window.location.origin : 'https://packdanutri.site'
         },
         events: {
-            'onReady': onPlayerReady
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
         }
     });
 }
 
 function onPlayerReady(event) {
     const videoOverlay = document.getElementById('video-overlay');
-    if (videoOverlay) {
-        videoOverlay.addEventListener('click', () => {
-            const playerState = player.getPlayerState();
+    const videoWrapper = document.querySelector('.video-wrapper');
 
-            if (playerState === YT.PlayerState.PAUSED || playerState === YT.PlayerState.BUFFERING || playerState === -1) {
+    // Mute on absolute start just to be sure it autoplays silently (iOS/Safari requirement)
+    player.mute();
+
+    // Any click on the screen starts the video with sound
+    const startVideoOnFirstClick = () => {
+        if (!hasInteracted) {
+            hasInteracted = true;
+            player.unMute();
+            player.playVideo();
+            if (videoOverlay) {
+                videoOverlay.classList.add('playing');
+            }
+            // Remove global listener after first interaction
+            document.removeEventListener('click', startVideoOnFirstClick);
+            document.removeEventListener('touchstart', startVideoOnFirstClick);
+        }
+    };
+
+    document.addEventListener('click', startVideoOnFirstClick);
+    document.addEventListener('touchstart', startVideoOnFirstClick, { passive: true });
+
+    // Video wrapper specific click logic (pause / play)
+    if (videoWrapper) {
+        videoWrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!hasInteracted) {
+                startVideoOnFirstClick();
+                return;
+            }
+
+            const state = player.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            } else if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.BUFFERING || state === -1) {
                 player.playVideo();
                 player.unMute();
-                videoOverlay.classList.add('playing');
-            } else if (playerState === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-                videoOverlay.classList.remove('playing');
+                if (videoOverlay) {
+                    videoOverlay.classList.add('playing');
+                    const span = videoOverlay.querySelector('span');
+                    const icon = videoOverlay.querySelector('i');
+                    if (span) span.textContent = 'Clique para ouvir';
+                    if (icon) {
+                        icon.classList.remove('ph-play');
+                        icon.classList.add('ph-speaker-hifi');
+                    }
+                }
             }
         });
+    }
+}
+
+function onPlayerStateChange(event) {
+    const videoOverlay = document.getElementById('video-overlay');
+    // Se o vídeo terminar, não recomeça automático. Aparece opção de rever.
+    if (event.data === YT.PlayerState.ENDED) {
+        if (videoOverlay) {
+            videoOverlay.classList.remove('playing');
+            const span = videoOverlay.querySelector('span');
+            const icon = videoOverlay.querySelector('i');
+            if (span) span.textContent = 'Ver de novo';
+            if (icon) {
+                icon.classList.remove('ph-speaker-hifi', 'ph-fill');
+                icon.classList.add('ph-play', 'ph-fill');
+            }
+        }
     }
 }
