@@ -184,16 +184,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// YouTube API Integration
+// YouTube API Integration Lazy Load (Performance Optimization)
 let player;
-
-// Load YouTube API asynchronously to prevent race conditions with defer
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+let ytLoaded = false;
+let ytReady = false;
 let hasInteracted = false;
+
+function loadYouTubeAPI() {
+    if (ytLoaded) return;
+    ytLoaded = true;
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+// Lazy load API exactly 1.5 seconds after page load or immediately on first click/scroll
+const lazyTriggers = ['scroll', 'mousemove', 'touchstart', 'keydown'];
+function initLazyYT() {
+    loadYouTubeAPI();
+    lazyTriggers.forEach(e => document.removeEventListener(e, initLazyYT));
+}
+lazyTriggers.forEach(e => document.addEventListener(e, initLazyYT, { once: true, passive: true }));
+setTimeout(loadYouTubeAPI, 1500); // Fallback: load after 1.5s anyway
 
 window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('hero-video', {
@@ -218,31 +231,44 @@ window.onYouTubeIframeAPIReady = function () {
 }
 
 function onPlayerReady(event) {
+    ytReady = true;
     const videoOverlay = document.getElementById('video-overlay');
-    const videoWrapper = document.querySelector('.video-wrapper');
+    player.mute(); // ensure muted play originally
 
-    // Mute on absolute start just to be sure it autoplays silently (iOS/Safari requirement)
-    player.mute();
+    // Se o usuário já clicou antes da API carregar, toque imediatamente
+    if (hasInteracted) {
+        player.unMute();
+        player.playVideo();
+        if (videoOverlay) videoOverlay.classList.add('playing');
+    }
+}
 
-    // Any click on the screen starts the video with sound
-    const startVideoOnFirstClick = () => {
-        if (!hasInteracted) {
-            hasInteracted = true;
+const startVideoOnFirstClick = () => {
+    if (!hasInteracted) {
+        hasInteracted = true;
+        loadYouTubeAPI(); // Garante o carregamento acelerado se for o primeiro evento
+
+        const videoOverlay = document.getElementById('video-overlay');
+        if (videoOverlay) {
+            videoOverlay.classList.add('playing');
+        }
+
+        if (ytReady && player) {
             player.unMute();
             player.playVideo();
-            if (videoOverlay) {
-                videoOverlay.classList.add('playing');
-            }
-            // Remove global listener after first interaction
-            document.removeEventListener('click', startVideoOnFirstClick);
-            document.removeEventListener('touchstart', startVideoOnFirstClick);
         }
-    };
 
-    document.addEventListener('click', startVideoOnFirstClick);
-    document.addEventListener('touchstart', startVideoOnFirstClick, { passive: true });
+        document.removeEventListener('click', startVideoOnFirstClick);
+        document.removeEventListener('touchstart', startVideoOnFirstClick);
+    }
+};
 
-    // Video wrapper specific click logic (pause / play)
+document.addEventListener('click', startVideoOnFirstClick);
+document.addEventListener('touchstart', startVideoOnFirstClick, { passive: true });
+
+// Clique específico no overlay/vídeo (após o start automático global)
+document.addEventListener('DOMContentLoaded', () => {
+    const videoWrapper = document.querySelector('.video-wrapper');
     if (videoWrapper) {
         videoWrapper.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -251,30 +277,41 @@ function onPlayerReady(event) {
                 return;
             }
 
-            const state = player.getPlayerState();
-            if (state === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-            } else if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.BUFFERING || state === -1) {
-                player.playVideo();
-                player.unMute();
-                if (videoOverlay) {
-                    videoOverlay.classList.add('playing');
-                    const span = videoOverlay.querySelector('span');
-                    const icon = videoOverlay.querySelector('i');
-                    if (span) span.textContent = 'Clique para ouvir';
-                    if (icon) {
-                        icon.classList.remove('ph-play');
-                        icon.classList.add('ph-speaker-hifi');
+            if (ytReady && player && player.getPlayerState) {
+                const state = player.getPlayerState();
+                const videoOverlay = document.getElementById('video-overlay');
+
+                if (state === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                } else if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.ENDED || state === YT.PlayerState.BUFFERING || state === -1) {
+                    player.playVideo();
+                    player.unMute();
+                    if (videoOverlay) {
+                        videoOverlay.classList.add('playing');
+                        const span = videoOverlay.querySelector('span');
+                        const icon = videoOverlay.querySelector('i');
+                        if (span) span.textContent = 'Clique para ouvir';
+                        if (icon) {
+                            icon.classList.remove('ph-play');
+                            icon.classList.add('ph-speaker-hifi');
+                        }
                     }
                 }
             }
         });
     }
-}
+});
 
 function onPlayerStateChange(event) {
     const videoOverlay = document.getElementById('video-overlay');
-    // Se o vídeo terminar, não recomeça automático. Aparece opção de rever.
+    const videoCover = document.getElementById('video-cover');
+
+    // Remove cover thumb seamlessly only when it really is playing
+    if (event.data === YT.PlayerState.PLAYING && videoCover) {
+        videoCover.style.opacity = '0';
+        setTimeout(() => { if (videoCover) videoCover.style.display = 'none'; }, 500);
+    }
+
     if (event.data === YT.PlayerState.ENDED) {
         if (videoOverlay) {
             videoOverlay.classList.remove('playing');
