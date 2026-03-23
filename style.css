@@ -945,7 +945,7 @@ section {
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 3rem 2rem;
-    max-width: 580px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
     box-shadow: var(--shadow-xl);
