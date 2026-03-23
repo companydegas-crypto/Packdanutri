@@ -651,7 +651,9 @@ section {
 
 @media(min-width: 768px) {
     .gallery-wrapper {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        max-width: 800px;
+        margin: 0 auto;
     }
 }
 
