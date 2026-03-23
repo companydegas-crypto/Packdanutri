@@ -1381,7 +1381,9 @@ footer p {
     }
 
     .offer-card {
-        padding: 2rem 1.25rem;
+        padding: 2rem 1rem;
+        width: calc(100% + 20px);
+        margin-left: -10px;
     }
 
     .value {
