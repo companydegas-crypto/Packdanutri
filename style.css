@@ -411,6 +411,78 @@ section {
     margin: 0 auto;
 }
 
+.floating-badge {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 20;
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-badge i {
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+.badge-top-right {
+    top: 5%;
+    right: -10%;
+    animation-delay: 0s;
+}
+
+.badge-bottom-left {
+    bottom: 15%;
+    left: -10%;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@media(max-width: 550px) {
+    .badge-top-right {
+        top: -3%;
+        right: -2%;
+    }
+
+    .badge-bottom-left {
+        bottom: 5%;
+        left: -2%;
+    }
+
+    .floating-badge {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .floating-badge i {
+        font-size: 1.1rem;
+    }
+}
+
 /* --- HERO VIDEO WRAPPER --- */
 .video-wrapper {
     position: relative;
@@ -582,6 +654,22 @@ section {
     box-shadow: var(--shadow-md);
     object-fit: cover;
     pointer-events: none;
+}
+
+.prints-carousel img {
+    height: 420px;
+    width: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+    background: transparent;
+}
+
+@media(max-width: 768px) {
+    .prints-carousel img {
+        height: 380px;
+    }
 }
 
 

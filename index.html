@@ -92,15 +92,15 @@
                     Instagram em um perfil profissional</span> que atrai pacientes</h1>
 
             <div class="hero-image reveal-right">
-                <div class="video-wrapper">
-                    <div id="hero-video"></div>
-                    <div class="video-overlay" id="video-overlay">
-                        <div class="play-button-wrapper">
-                            <i class="ph-fill ph-speaker-hifi"></i>
-                            <div class="vturb-text">Seu vídeo já começou</div>
-                            <span>Clique para ouvir</span>
-                        </div>
-                    </div>
+                <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook" class="mockup-hero"
+                    width="600" height="auto"
+                    style="border-radius: 12px; box-shadow: 0px 15px 40px rgba(0,0,0,0.15); width: 100%; display: block;">
+
+                <div class="floating-badge badge-top-right">
+                    <i class="ph-fill ph-paint-brush"></i> 100% Editável
+                </div>
+                <div class="floating-badge badge-bottom-left">
+                    <i class="ph-fill ph-lightning"></i> Acesso Imediato
                 </div>
             </div>
 
@@ -423,50 +423,28 @@
     <section class="testimonials bg-light text-center" id="testimonials">
         <div class="container reveal">
             <h2 class="section-title">O que as Nutricionistas estão dizendo</h2>
-            <div class="grid grid-3 testimonial-grid">
-                <div class="card testimonial-card instagram-proof">
-                    <div class="author-header">
-                        <div class="avatar bg-1">M</div>
-                        <div>
-                            <strong>Mariana L.</strong>
-                            <span>Nutricionista Clínica</span>
-                        </div>
-                    </div>
-                    <p class="comment-text">"Eu demorava horas para fazer um único carrossel. Agora eu sento no domingo,
-                        pego os modelos e agendo a semana inteira em 30 minutos. Mudou minha rotina!"</p>
-                    <div class="comment-action like-btn" data-likes="84" data-liked="false">
-                        <i class="ph-fill ph-heart"></i> Curtido por <span class="like-count">84</span> pessoas
-                    </div>
-                </div>
-                <div class="card testimonial-card instagram-proof">
-                    <div class="author-header">
-                        <div class="avatar bg-2">C</div>
-                        <div>
-                            <strong>Camila S.</strong>
-                            <span>Nutricionista Esportiva</span>
-                        </div>
-                    </div>
-                    <p class="comment-text">"Meus pacientes começaram a elogiar meu Instagram! Meu perfil antes parecia
-                        muito amador. O preço é ridículo de barato pelo que entrega."</p>
-                    <div class="comment-action like-btn" data-likes="126" data-liked="false">
-                        <i class="ph-fill ph-heart"></i> Curtido por <span class="like-count">126</span> pessoas
-                    </div>
-                </div>
-                <div class="card testimonial-card instagram-proof">
-                    <div class="author-header">
-                        <div class="avatar bg-3">A</div>
-                        <div>
-                            <strong>Amanda P.</strong>
-                            <span>Nutricionista Materno Infantil</span>
-                        </div>
-                    </div>
-                    <p class="comment-text">"Eu não sei absolutamente nada de design. Sinceramente, achei que não ia
-                        conseguir usar, mas é só clicar e digitar. Melhor investimento do ano pro meu consultório."</p>
-                    <div class="comment-action like-btn" data-likes="214" data-liked="false">
-                        <i class="ph-fill ph-heart"></i> Curtido por <span class="like-count">214</span> pessoas
-                    </div>
+            <div class="scroll-wrapper"
+                style="margin-top: 2rem; width: 100%; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
+                <style>
+                    .scroll-wrapper::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                <div class="prints-carousel"
+                    style="display: flex; gap: 20px; min-width: max-content; padding: 0 20px; margin: 0 auto;">
+                    <img src="assets/print1.png" alt="Avaliação 1" loading="lazy">
+                    <img src="assets/print2.png" alt="Avaliação 2" loading="lazy">
+                    <img src="assets/print3.png" alt="Avaliação 3" loading="lazy">
+                    <img src="assets/print4.png" alt="Avaliação 4" loading="lazy">
                 </div>
             </div>
+
+            <p class="mobile-only-text"
+                style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-light); font-weight: 600;">
+                <i class="ph-fill ph-arrows-out-line-horizontal"
+                    style="font-size: 1.15rem; vertical-align: sub; color: var(--primary);"></i> Arraste para o lado
+                para ler
+            </p>
         </div>
     </section>
 
