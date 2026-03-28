@@ -577,6 +577,17 @@ section {
     pointer-events: none;
 }
 
+.marquee-content picture {
+    flex-shrink: 0;
+    height: 280px;
+    width: 280px;
+}
+
+.marquee-content picture img {
+    height: 100%;
+    width: 100%;
+}
+
 /* --- TESTIMONIALS SCROLL --- */
 .scroll-wrapper {
     margin-top: 2rem;
@@ -608,8 +619,21 @@ section {
     background: transparent;
 }
 
+.prints-carousel picture {
+    flex-shrink: 0;
+    height: 420px;
+}
+
+.prints-carousel picture img {
+    height: 100%;
+    width: auto;
+}
+
 @media(max-width: 768px) {
     .prints-carousel img {
+        height: 380px;
+    }
+    .prints-carousel picture {
         height: 380px;
     }
 }
