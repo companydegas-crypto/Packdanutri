@@ -74,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroBtn = document.querySelector('.hero .btn-large');
 
     if (header && heroBtn) {
-        let lastScrollY = window.scrollY;
         let ticking = false;
+        // Cache offset to avoid forced reflow on every scroll
+        let cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
 
         const checkHeaderVisibility = () => {
-            const btnOffset = heroBtn.getBoundingClientRect().bottom + window.scrollY;
-            if (window.scrollY > btnOffset) {
+            if (window.scrollY > cachedBtnOffset) {
                 header.classList.remove('hidden');
             } else {
                 header.classList.add('hidden');
@@ -94,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 requestAnimationFrame(checkHeaderVisibility);
                 ticking = true;
             }
+        }, { passive: true });
+
+        // Recalculate only on resize
+        window.addEventListener('resize', () => {
+            cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
         }, { passive: true });
     }
 
