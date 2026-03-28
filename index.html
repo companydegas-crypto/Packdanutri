@@ -21,35 +21,27 @@
 
     <link rel="icon" type="image/svg+xml" href="assets/apple-favicon.svg">
 
-    <!-- Outros vínculos e Google Fonts -->
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://pagamento.packdanutri.site">
     <link rel="dns-prefetch" href="https://pagamento.packdanutri.site">
-    <link
+
+    <!-- Google Fonts: deferred load (non-render-blocking) -->
+    <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" type="image/webp" href="assets/benefits-mockup.webp">
 
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css?v=2.2">
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code (deferred to not block rendering) -->
     <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '854329384330408');
-        fbq('track', 'PageView');
+        function loadPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','854329384330408');fbq('track','PageView');}
+        if('requestIdleCallback' in window){requestIdleCallback(loadPixel)}else{window.addEventListener('load',loadPixel)}
     </script>
     <noscript><img height="1" width="1" style="display:none" loading="lazy"
             src="https://www.facebook.com/tr?id=854329384330408&ev=PageView&noscript=1" /></noscript>
@@ -92,9 +84,12 @@
                     Instagram em um perfil profissional</span> que atrai pacientes</h1>
 
             <div class="hero-image reveal-right">
-                <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook" class="mockup-hero"
-                    width="600" height="450" loading="eager" fetchpriority="high" decoding="async"
-                    style="border-radius: 12px; box-shadow: 0px 15px 40px rgba(0,0,0,0.15); width: 100%; height: auto; display: block;">
+                <picture>
+                    <source type="image/webp" srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w" sizes="(max-width: 768px) 100vw, 50vw">
+                    <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook" class="mockup-hero"
+                        width="600" height="450" loading="eager" fetchpriority="high" decoding="async"
+                        style="border-radius: 12px; box-shadow: 0px 15px 40px rgba(0,0,0,0.15); width: 100%; height: auto; display: block;">
+                </picture>
 
                 <div class="floating-badge badge-top-right">
                     <i class="ph-fill ph-paint-brush"></i> 100% Editável
@@ -137,18 +132,18 @@
             </div>
             <div class="marquee">
                 <div class="marquee-content">
-                    <img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280">
+                    <picture><source type="image/webp" srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280"></picture>
 
                     <!-- Loop infinito (duplicação) -->
-                    <img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280">
-                    <img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280">
+                    <picture><source type="image/webp" srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture><source type="image/webp" srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280"></picture>
                 </div>
             </div>
         </div>
@@ -324,8 +319,11 @@
         <div class="container reveal">
             <div class="benefits-layout">
                 <div class="benefits-image">
-                    <img src="assets/benefits-mockup.png" alt="Posts prontos para nutricionistas em notebook e celular"
-                        loading="lazy" decoding="async" width="600" height="500">
+                    <picture>
+                        <source type="image/webp" srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w" sizes="(max-width: 768px) 100vw, 50vw">
+                        <img src="assets/benefits-mockup.png" alt="Posts prontos para nutricionistas em notebook e celular"
+                            loading="lazy" decoding="async" width="600" height="500">
+                    </picture>
                 </div>
                 <div class="benefits-content">
                     <h2 class="section-title">Por que isso pode transformar seu Instagram</h2>
@@ -425,10 +423,10 @@
             <h2 class="section-title">O que as Nutricionistas estão dizendo</h2>
             <div class="scroll-wrapper">
                 <div class="prints-carousel">
-                    <img src="assets/print1.png" alt="Avaliação 1" loading="lazy" decoding="async" width="300" height="420">
-                    <img src="assets/print2.png" alt="Avaliação 2" loading="lazy" decoding="async" width="300" height="420">
-                    <img src="assets/print3.png" alt="Avaliação 3" loading="lazy" decoding="async" width="300" height="420">
-                    <img src="assets/print4.png" alt="Avaliação 4" loading="lazy" decoding="async" width="300" height="420">
+                    <picture><source type="image/webp" srcset="assets/print1-mobile.webp 400w, assets/print1.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print1.png" alt="Avaliação 1" loading="lazy" decoding="async" width="300" height="420"></picture>
+                    <picture><source type="image/webp" srcset="assets/print2-mobile.webp 400w, assets/print2.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print2.png" alt="Avaliação 2" loading="lazy" decoding="async" width="300" height="420"></picture>
+                    <picture><source type="image/webp" srcset="assets/print3-mobile.webp 400w, assets/print3.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print3.png" alt="Avaliação 3" loading="lazy" decoding="async" width="300" height="420"></picture>
+                    <picture><source type="image/webp" srcset="assets/print4-mobile.webp 400w, assets/print4.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print4.png" alt="Avaliação 4" loading="lazy" decoding="async" width="300" height="420"></picture>
                 </div>
             </div>
 
@@ -586,7 +584,15 @@
         <p>&copy; 2026 Pack Nutrição. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js?v=2.1" defer></script>
+    <!-- Phosphor Icons: loaded after page is interactive -->
+    <script>
+        window.addEventListener('load', function() {
+            var s = document.createElement('script');
+            s.src = 'https://unpkg.com/@phosphor-icons/web';
+            document.body.appendChild(s);
+        });
+    </script>
+    <script src="script.js?v=2.2" defer></script>
 </body>
 
 </html>
