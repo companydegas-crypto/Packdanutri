@@ -116,6 +116,22 @@ section {
     padding: 5rem 0;
 }
 
+/* Performance: skip rendering for off-screen sections */
+.problem,
+.solution,
+.whats-included,
+.bonus,
+.benefits,
+.how-it-works,
+.testimonials,
+.offer,
+.guarantee,
+.faq,
+.final-cta {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
+
 .section-title {
     font-size: 2.25rem;
     margin-bottom: 1.5rem;
@@ -1333,21 +1349,22 @@ section {
 .js-enabled .reveal-up,
 .js-enabled .reveal-right {
     opacity: 0;
+    will-change: transform, opacity;
 }
 
 .js-enabled .reveal {
     transform: translateY(24px);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .js-enabled .reveal-up {
     transform: translateY(32px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .js-enabled .reveal-right {
     transform: translateX(32px);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.active,
@@ -1355,11 +1372,27 @@ section {
 .reveal-right.active {
     opacity: 1 !important;
     transform: translate(0, 0) !important;
+    will-change: auto; /* Release GPU layer after animation */
 }
 
 /* Delay modifiers */
 [style*="--delay"] {
     transition-delay: var(--delay);
+}
+
+/* Accessibility: Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .reveal,
+    .js-enabled .reveal-up,
+    .js-enabled .reveal-right {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+    .glow-effect { animation: none; }
+    .floating-badge { animation: none; }
+    * { scroll-behavior: auto !important; }
 }
 
 /* --- FOOTER --- */
