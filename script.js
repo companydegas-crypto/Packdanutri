@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Smooth Scroll — sem bloquear nenhum link, funciona de primeira
+    // 3. Smooth Scroll — garante que o botão de checkout fique visível ao ir para #offer
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -55,7 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                if (targetId === '#offer') {
+                    // Scroll para que o botão de checkout fique visível na tela
+                    const checkoutBtn = document.getElementById('checkout-btn');
+                    if (checkoutBtn) {
+                        const btnRect = checkoutBtn.getBoundingClientRect();
+                        const btnAbsBottom = window.scrollY + btnRect.bottom;
+                        // Posiciona para que o botão fique com ~80px de margem do fundo da viewport
+                        const scrollTo = btnAbsBottom - window.innerHeight + 80;
+                        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+                    } else {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } else {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
             // Se o alvo não existir, o link funciona sem interferência
         });
