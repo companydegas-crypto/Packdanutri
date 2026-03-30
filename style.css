@@ -437,10 +437,10 @@ section {
     overflow: hidden;
     border-radius: 16px;
     box-shadow: 0px 15px 40px rgba(0,0,0,0.15);
-    background: #000 url('https://i.ytimg.com/vi/PeH7BC_2uwE/hqdefault.jpg') center/cover no-repeat;
+    background: #000;
 }
 
-/* Scaling the iframe slightly avoids showing the top YouTube title bar on pause */
+/* Extrapolando o tamanho do YouTube para empurrar o título e logo pra fora da tela */
 .video-crop-wrapper iframe {
     position: absolute;
     top: -5%;
@@ -457,16 +457,31 @@ section {
     width: 100%;
     height: 100%;
     z-index: 10;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
+    background: url('https://i.ytimg.com/vi/_JCzEUuGvfg/hqdefault.jpg') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+/* Criando o efeito de desfoque sobre a capa do vídeo inicial */
+.video-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px) brightness(0.6);
+    -webkit-backdrop-filter: blur(10px) brightness(0.6);
+    z-index: -1;
+    transition: opacity 0.5s ease;
 }
 
 .video-overlay.is-playing {
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
+}
+
+.video-overlay.is-playing::before {
+    opacity: 0;
 }
 
 .custom-play-pause-btn {
