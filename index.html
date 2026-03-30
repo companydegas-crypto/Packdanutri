@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://pagamento.packdanutri.site">
     <link rel="dns-prefetch" href="https://pagamento.packdanutri.site">
+    <link rel="preconnect" href="https://unpkg.com">
 
     <!-- Google Fonts: deferred load (non-render-blocking) -->
     <link rel="preload" as="style"
@@ -39,6 +40,9 @@
     <link rel="preconnect" href="https://www.youtube-nocookie.com">
     <link rel="preconnect" href="https://i.ytimg.com">
     <link rel="preload" as="script" href="https://www.youtube.com/iframe_api">
+
+    <!-- Preload do LCP: miniatura do youtube desfocada -->
+    <link rel="preload" as="image" href="https://i.ytimg.com/vi/_JCzEUuGvfg/hqdefault.jpg">
 
 
 
@@ -845,14 +849,8 @@
         <p>&copy; 2026 Pack Nutrição. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Phosphor Icons: loaded after page is interactive -->
-    <script>
-        window.addEventListener('load', function () {
-            var s = document.createElement('script');
-            s.src = 'https://unpkg.com/@phosphor-icons/web';
-            document.body.appendChild(s);
-        });
-    </script>
+    <!-- Phosphor Icons: carrega de forma assíncrona -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
     <script src="script.js?v=2.2" defer></script>
 </body>
 
