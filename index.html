@@ -31,24 +31,226 @@
     <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    </noscript>
 
     <!-- Preload hero image (LCP) -->
     <link rel="preload" as="image" type="image/webp" href="assets/benefits-mockup.webp">
 
     <!-- Critical CSS: above-the-fold styles inlined to avoid render-blocking -->
     <style>
-        :root{--bg-color:#F8FAF8;--bg-white:#FFF;--text-main:#1C1C1E;--text-light:#6B7280;--primary:#22C55E;--primary-hover:#16A34A;--primary-light:#DCFCE7;--border:#E5E7EB;--danger:#EF4444;--danger-light:#FEE2E2;--shadow-sm:0 1px 2px 0 rgba(0,0,0,.04);--shadow-md:0 4px 12px -2px rgba(0,0,0,.08);--shadow-lg:0 8px 24px -4px rgba(0,0,0,.1);--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;--transition:all .3s cubic-bezier(.4,0,.2,1)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;background-color:var(--bg-color);color:var(--text-main);line-height:1.6;letter-spacing:-.01em;overflow-x:hidden;-webkit-font-smoothing:antialiased}h1,h2,h3,h4{color:var(--text-main);font-weight:800;line-height:1.2;letter-spacing:-.03em}p{color:var(--text-light);margin-bottom:1rem;line-height:1.7}img{max-width:100%;height:auto;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}.container{max-width:1200px;margin:0 auto;padding:0 24px}.text-center{text-align:center}.urgency-banner{position:relative;width:100%;background:linear-gradient(90deg,#EF4444,#DC2626);color:#fff;padding:10px;font-size:.875rem;font-weight:700;z-index:1001;text-align:center;letter-spacing:.02em}.glass-header{position:fixed;top:44px;left:50%;transform:translateX(-50%);width:92%;max-width:1200px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.5);border-radius:100px;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.06);transition:transform .4s cubic-bezier(.4,0,.2,1)}.glass-header.hidden{transform:translate(-50%,-150%)}.header-container{display:flex;justify-content:space-between;align-items:center;padding:10px 24px}.logo{font-size:1.2rem;font-weight:800;color:var(--text-main);letter-spacing:-.03em}.logo span{color:var(--primary)}.btn-small{padding:10px 20px;font-size:.875rem;border-radius:100px;width:auto;max-width:none}.hero{position:relative;padding-top:4rem!important;padding-bottom:4rem;overflow:hidden}.hero-container{display:flex;flex-direction:column;gap:2rem}.hero h1{font-family:'Inter',-apple-system,sans-serif;font-size:1.625rem;font-weight:700;letter-spacing:-.03em;line-height:1.25;margin:0}.btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;border-radius:16px;font-weight:700;font-size:1.05rem;transition:var(--transition);cursor:pointer;border:none;text-align:center;width:100%;max-width:380px}.btn-primary{background-color:var(--primary);color:#fff}.btn-large{padding:18px 24px;font-size:1.15rem;width:100%;max-width:440px}.js-enabled .reveal,.js-enabled .reveal-up,.js-enabled .reveal-right{opacity:0;will-change:transform,opacity}
+        :root {
+            --bg-color: #F8FAF8;
+            --bg-white: #FFF;
+            --text-main: #1C1C1E;
+            --text-light: #6B7280;
+            --primary: #22C55E;
+            --primary-hover: #16A34A;
+            --primary-light: #DCFCE7;
+            --border: #E5E7EB;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, .04);
+            --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, .08);
+            --shadow-lg: 0 8px 24px -4px rgba(0, 0, 0, .1);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: all .3s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            letter-spacing: -.01em;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -.03em
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        ul {
+            list-style: none
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .urgency-banner {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(90deg, #EF4444, #DC2626);
+            color: #fff;
+            padding: 10px;
+            font-size: .875rem;
+            font-weight: 700;
+            z-index: 1001;
+            text-align: center;
+            letter-spacing: .02em
+        }
+
+        .glass-header {
+            position: fixed;
+            top: 44px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, .5);
+            border-radius: 100px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
+            transition: transform .4s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .glass-header.hidden {
+            transform: translate(-50%, -150%)
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -.03em
+        }
+
+        .logo span {
+            color: var(--primary)
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: .875rem;
+            border-radius: 100px;
+            width: auto;
+            max-width: none
+        }
+
+        .hero {
+            position: relative;
+            padding-top: 4rem !important;
+            padding-bottom: 4rem;
+            overflow: hidden
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem
+        }
+
+        .hero h1 {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1.625rem;
+            font-weight: 700;
+            letter-spacing: -.03em;
+            line-height: 1.25;
+            margin: 0
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            width: 100%;
+            max-width: 380px
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff
+        }
+
+        .btn-large {
+            padding: 18px 24px;
+            font-size: 1.15rem;
+            width: 100%;
+            max-width: 440px
+        }
+
+        .js-enabled .reveal,
+        .js-enabled .reveal-up,
+        .js-enabled .reveal-right {
+            opacity: 0;
+            will-change: transform, opacity
+        }
     </style>
 
     <!-- Full stylesheet: non-render-blocking -->
     <link rel="preload" href="style.css?v=2.3" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=2.3"></noscript>
+    <noscript>
+        <link rel="stylesheet" href="style.css?v=2.3">
+    </noscript>
 
     <!-- Meta Pixel Code (deferred to not block rendering) -->
     <script>
-        function loadPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','854329384330408');fbq('track','PageView');}
-        if('requestIdleCallback' in window){requestIdleCallback(loadPixel)}else{window.addEventListener('load',loadPixel)}
+        function loadPixel() { !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s) }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '854329384330408'); fbq('track', 'PageView'); }
+        if ('requestIdleCallback' in window) { requestIdleCallback(loadPixel) } else { window.addEventListener('load', loadPixel) }
     </script>
     <noscript><img height="1" width="1" style="display:none" loading="lazy"
             src="https://www.facebook.com/tr?id=854329384330408&ev=PageView&noscript=1" /></noscript>
@@ -92,9 +294,12 @@
 
             <div class="hero-image reveal-right">
                 <picture>
-                    <source type="image/webp" srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w" sizes="(max-width: 768px) 100vw, 50vw">
-                    <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook" class="mockup-hero"
-                        width="600" height="450" loading="eager" fetchpriority="high" decoding="async"
+                    <source type="image/webp"
+                        srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w"
+                        sizes="(max-width: 768px) 100vw, 50vw">
+                    <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook"
+                        class="mockup-hero" width="600" height="450" loading="eager" fetchpriority="high"
+                        decoding="async"
                         style="border-radius: 12px; box-shadow: 0px 15px 40px rgba(0,0,0,0.15); width: 100%; height: auto; display: block;">
                 </picture>
 
@@ -107,7 +312,7 @@
             </div>
 
             <div class="hero-content">
-                <p class="subheadline reveal" style="--delay: 0.1s">Receba 150 posts prontos para usar no Canva e
+                <p class="subheadline reveal" style="--delay: 0.1s">Receba 150 posts totalmente editáveis no Canva e
                     poste com mais constância, mais profissionalismo e sem perder horas criando conteúdo.</p>
 
                 <ul class="hero-benefits reveal" style="--delay: 0.3s">
@@ -139,18 +344,68 @@
             </div>
             <div class="marquee">
                 <div class="marquee-content">
-                    <picture><source type="image/webp" srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img
+                            src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img
+                            src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280"
+                            height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img
+                            src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img
+                            src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img
+                            src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
 
                     <!-- Loop infinito (duplicação) -->
-                    <picture><source type="image/webp" srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async" width="280" height="280"></picture>
-                    <picture><source type="image/webp" srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async" width="280" height="280"></picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img
+                            src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_2-mobile.webp 400w, assets/carousel_2.webp 600w" sizes="280px"><img
+                            src="assets/carousel_2.jpg" alt="Post educativo" loading="lazy" decoding="async" width="280"
+                            height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_3-mobile.webp 400w, assets/carousel_3.webp 600w" sizes="280px"><img
+                            src="assets/carousel_3.jpg" alt="Post informativo" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_4-mobile.webp 400w, assets/carousel_4.webp 600w" sizes="280px"><img
+                            src="assets/carousel_4.jpg" alt="Post motivacional" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="assets/carousel_5-mobile.webp 400w, assets/carousel_5.webp 600w" sizes="280px"><img
+                            src="assets/carousel_5.jpg" alt="Post interativo" loading="lazy" decoding="async"
+                            width="280" height="280">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -174,7 +429,7 @@
                 <div class="card problem-card reveal-up" style="--delay: 0.3s">
                     <div class="icon-box danger"><i class="ph ph-eye-slash"></i></div>
                     <h3>Seu perfil não parece profissional</h3>
-                    <p>Os posts não transmitem autoridade.</p>
+                    <p>Os posts não transmitem autoridade e parecem amadores.</p>
                 </div>
                 <div class="card problem-card reveal-up" style="--delay: 0.4s">
                     <div class="icon-box danger"><i class="ph ph-trend-down"></i></div>
@@ -214,27 +469,10 @@
                 <div class="stat-box"><strong>+150</strong><span>Posts Prontos para Nutricionistas</span></div>
             </div>
 
-            <div class="grid grid-2 included-grid">
-                <div class="card included-card reveal-up">
-                    <i class="ph-duotone ph-book-open-text icon-large"></i>
-                    <h3>Posts Educativos</h3>
-                    <p>Explique conceitos nutricionais de forma simples e atrativa para seus seguidores.</p>
-                </div>
-                <div class="card included-card reveal-up">
-                    <i class="ph-duotone ph-lightbulb icon-large"></i>
-                    <h3>Dicas Práticas</h3>
-                    <p>Gere valor para sua audiência com conteúdos prontos que engajam e educam.</p>
-                </div>
-                <div class="card included-card reveal-up">
-                    <i class="ph-duotone ph-cooking-pot icon-large"></i>
-                    <h3>Receitas</h3>
-                    <p>Aumente o engajamento mostrando receitas de forma organizada e profissional.</p>
-                </div>
-                <div class="card included-card reveal-up">
-                    <i class="ph-duotone ph-cards icon-large"></i>
-                    <h3>Carrosséis</h3>
-                    <p>Aumente os salvamentos com o formato que mais gera alcance no Instagram.</p>
-                </div>
+            <div class="pack-description-block reveal-up">
+                <p class="pack-description-text">
+                    O Pack da Nutri traz <strong>+150 templates prontos e editáveis no Canva</strong> prontos para você copiar e colar, criados especialmente para nutricionistas que querem um <strong>feed profissional, estratégico e que atrai pacientes</strong>, sem precisar aparecer ou perder horas criando conteúdo.
+                </p>
             </div>
 
             <div class="text-center mt-large reveal">
@@ -327,9 +565,12 @@
             <div class="benefits-layout">
                 <div class="benefits-image">
                     <picture>
-                        <source type="image/webp" srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w" sizes="(max-width: 768px) 100vw, 50vw">
-                        <img src="assets/benefits-mockup.png" alt="Posts prontos para nutricionistas em notebook e celular"
-                            loading="lazy" decoding="async" width="600" height="500">
+                        <source type="image/webp"
+                            srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w"
+                            sizes="(max-width: 768px) 100vw, 50vw">
+                        <img src="assets/benefits-mockup.png"
+                            alt="Posts prontos para nutricionistas em notebook e celular" loading="lazy"
+                            decoding="async" width="600" height="500">
                     </picture>
                 </div>
                 <div class="benefits-content">
@@ -430,10 +671,26 @@
             <h2 class="section-title">O que as Nutricionistas estão dizendo</h2>
             <div class="scroll-wrapper">
                 <div class="prints-carousel">
-                    <picture><source type="image/webp" srcset="assets/print1-mobile.webp 400w, assets/print1.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print1.png" alt="Avaliação 1" loading="lazy" decoding="async" width="300" height="420"></picture>
-                    <picture><source type="image/webp" srcset="assets/print2-mobile.webp 400w, assets/print2.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print2.png" alt="Avaliação 2" loading="lazy" decoding="async" width="300" height="420"></picture>
-                    <picture><source type="image/webp" srcset="assets/print3-mobile.webp 400w, assets/print3.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print3.png" alt="Avaliação 3" loading="lazy" decoding="async" width="300" height="420"></picture>
-                    <picture><source type="image/webp" srcset="assets/print4-mobile.webp 400w, assets/print4.webp 600w" sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print4.png" alt="Avaliação 4" loading="lazy" decoding="async" width="300" height="420"></picture>
+                    <picture>
+                        <source type="image/webp" srcset="assets/print1-mobile.webp 400w, assets/print1.webp 600w"
+                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print1.png" alt="Avaliação 1"
+                            loading="lazy" decoding="async" width="300" height="420">
+                    </picture>
+                    <picture>
+                        <source type="image/webp" srcset="assets/print2-mobile.webp 400w, assets/print2.webp 600w"
+                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print2.png" alt="Avaliação 2"
+                            loading="lazy" decoding="async" width="300" height="420">
+                    </picture>
+                    <picture>
+                        <source type="image/webp" srcset="assets/print3-mobile.webp 400w, assets/print3.webp 600w"
+                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print3.png" alt="Avaliação 3"
+                            loading="lazy" decoding="async" width="300" height="420">
+                    </picture>
+                    <picture>
+                        <source type="image/webp" srcset="assets/print4-mobile.webp 400w, assets/print4.webp 600w"
+                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print4.png" alt="Avaliação 4"
+                            loading="lazy" decoding="async" width="300" height="420">
+                    </picture>
                 </div>
             </div>
 
@@ -593,7 +850,7 @@
 
     <!-- Phosphor Icons: loaded after page is interactive -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var s = document.createElement('script');
             s.src = 'https://unpkg.com/@phosphor-icons/web';
             document.body.appendChild(s);
