@@ -476,12 +476,22 @@ section {
     transition: opacity 0.5s ease;
 }
 
-.video-overlay.is-playing {
-    background: rgba(0, 0, 0, 0);
+.video-overlay.is-playing,
+.video-overlay.has-started {
+    background: transparent;
 }
 
-.video-overlay.is-playing::before {
+.video-overlay.is-playing::before,
+.video-overlay.has-started::before {
     opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.ph-spin {
+    animation: spin 1s linear infinite;
 }
 
 .custom-play-pause-btn {

@@ -258,6 +258,15 @@ function onPlayerReady(event) {
             if (state === YT.PlayerState.PLAYING) {
                 ytPlayer.pauseVideo();
             } else {
+                // Show loading spinner immediately while waiting for youtube to respond
+                const playIcon = document.getElementById('play-icon');
+                const pauseIcon = document.getElementById('pause-icon');
+                const loadingIcon = document.getElementById('loading-icon');
+                if (playIcon && pauseIcon && loadingIcon) {
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'none';
+                    loadingIcon.style.display = 'block';
+                }
                 ytPlayer.playVideo();
             }
         });
@@ -268,16 +277,24 @@ function onPlayerStateChange(event) {
     const overlay = document.getElementById('video-overlay');
     const playIcon = document.getElementById('play-icon');
     const pauseIcon = document.getElementById('pause-icon');
+    const loadingIcon = document.getElementById('loading-icon');
 
-    if (overlay && playIcon && pauseIcon) {
+    if (overlay && playIcon && pauseIcon && loadingIcon) {
         if (event.data === YT.PlayerState.PLAYING) {
             overlay.classList.add('is-playing');
+            overlay.classList.add('has-started');
             playIcon.style.display = 'none';
             pauseIcon.style.display = 'block';
+            loadingIcon.style.display = 'none';
+        } else if (event.data === YT.PlayerState.BUFFERING) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'none';
+            loadingIcon.style.display = 'block';
         } else {
             overlay.classList.remove('is-playing');
             playIcon.style.display = 'block';
             pauseIcon.style.display = 'none';
+            loadingIcon.style.display = 'none';
             if (event.data === YT.PlayerState.ENDED) {
                 ytPlayer.seekTo(0);
                 ytPlayer.pauseVideo();
