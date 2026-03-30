@@ -36,8 +36,10 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
     </noscript>
 
-    <!-- Preload hero image (LCP) -->
-    <link rel="preload" as="image" type="image/webp" href="assets/benefits-mockup.webp">
+    <!-- Preconnect: YouTube Embed & Thumbnails for faster LCP -->
+    <link rel="preconnect" href="https://www.youtube-nocookie.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="preload" as="script" href="https://www.youtube.com/iframe_api">
 
     <!-- Critical CSS: above-the-fold styles inlined to avoid render-blocking -->
     <style>
@@ -292,22 +294,15 @@
                     seu
                     Instagram em um perfil profissional</span> que atrai pacientes</h1>
 
-            <div class="hero-image reveal-right">
-                <picture>
-                    <source type="image/webp"
-                        srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w"
-                        sizes="(max-width: 768px) 100vw, 50vw">
-                    <img src="assets/benefits-mockup.png" alt="Mockup dos Templates no iPhone e Macbook"
-                        class="mockup-hero" width="600" height="450" loading="eager" fetchpriority="high"
-                        decoding="async"
-                        style="border-radius: 12px; box-shadow: 0px 15px 40px rgba(0,0,0,0.15); width: 100%; height: auto; display: block;">
-                </picture>
-
-                <div class="floating-badge badge-top-right">
-                    <i class="ph-fill ph-paint-brush"></i> 100% Editável
-                </div>
-                <div class="floating-badge badge-bottom-left">
-                    <i class="ph-fill ph-lightning"></i> Acesso Imediato
+            <div class="hero-video-container reveal-right">
+                <div class="video-crop-wrapper">
+                    <div id="hero-yt-player"></div>
+                    <div class="video-overlay" id="video-overlay" aria-label="Overlay para play/pause">
+                        <button class="custom-play-pause-btn" id="custom-play-btn" aria-label="Play/Pause">
+                            <i class="ph-fill ph-play" id="play-icon"></i>
+                            <i class="ph-fill ph-pause" id="pause-icon" style="display: none;"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 

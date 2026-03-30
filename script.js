@@ -124,10 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let startX;
         let scrollLeft;
         let autoScrollTimer;
+        let isMarqueeVisible = false;
         const scrollSpeed = 0.8;
 
+        const observerMarquee = new IntersectionObserver((entries) => {
+            isMarqueeVisible = entries[0].isIntersecting;
+        });
+        observerMarquee.observe(marquee);
+
         const playMarquee = () => {
-            if (!isDown) {
+            if (!isDown && isMarqueeVisible) {
                 marquee.scrollLeft += scrollSpeed;
                 if (marquee.scrollLeft >= (marquee.scrollWidth / 2)) {
                     marquee.scrollLeft = 0;
@@ -202,6 +208,80 @@ document.addEventListener('DOMContentLoaded', () => {
             document.head.appendChild(prefetch);
         }, { once: true });
     }
+
+    // 9. Load YouTube Iframe API lazily
+    const loadYT = () => {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    };
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadYT, { timeout: 2000 });
+    } else {
+        setTimeout(loadYT, 1500);
+    }
 });
 
+// YouTube Player Initializer
+let ytPlayer;
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('hero-yt-player', {
+        videoId: 'PeH7BC_2uwE',
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: {
+            'playsinline': 1,
+            'controls': 0,
+            'disablekb': 1,
+            'fs': 0,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'iv_load_policy': 3,
+            'cc_load_policy': 0,
+            'autohide': 1,
+            'origin': 'https://packdanutri.site'
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
 
+function onPlayerReady(event) {
+    const overlay = document.getElementById('video-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            const state = ytPlayer.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+                ytPlayer.pauseVideo();
+            } else {
+                ytPlayer.playVideo();
+            }
+        });
+    }
+}
+
+function onPlayerStateChange(event) {
+    const overlay = document.getElementById('video-overlay');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+
+    if (overlay && playIcon && pauseIcon) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            overlay.classList.add('is-playing');
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        } else {
+            overlay.classList.remove('is-playing');
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            if (event.data === YT.PlayerState.ENDED) {
+                ytPlayer.seekTo(0);
+                ytPlayer.pauseVideo();
+            }
+        }
+    }
+}

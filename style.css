@@ -420,11 +420,82 @@ section {
     align-items: center;
 }
 
-.hero-image {
+.hero-video-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
+    aspect-ratio: 9 / 16;
+}
+
+.video-crop-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 15px 40px rgba(0,0,0,0.15);
+    background: #000 url('https://i.ytimg.com/vi/PeH7BC_2uwE/hqdefault.jpg') center/cover no-repeat;
+}
+
+/* Scaling the iframe slightly avoids showing the top YouTube title bar on pause */
+.video-crop-wrapper iframe {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    pointer-events: none; /* Everything handled by overlay! */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.video-overlay.is-playing {
+    background: transparent;
+}
+
+.custom-play-pause-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    z-index: 11;
+}
+
+.custom-play-pause-btn i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.video-overlay.is-playing .custom-play-pause-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-overlay:hover .custom-play-pause-btn {
+    transform: scale(1.05);
 }
 
 .floating-badge {
@@ -530,9 +601,9 @@ section {
         align-self: start;
     }
 
-    .hero-container>.hero-image {
+    .hero-container>.hero-video-container {
         grid-area: image;
-        margin: 0;
+        margin: 0 auto;
     }
 }
 
@@ -1519,7 +1590,7 @@ footer p {
         text-align: left;
     }
 
-    .hero-image {
+    .hero-video-container {
         order: 2;
         /* Image after H1 */
         margin-bottom: 1rem;
