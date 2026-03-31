@@ -296,6 +296,7 @@ function onPlayerStateChange(event) {
             pauseIcon.style.display = 'none';
             loadingIcon.style.display = 'none';
             if (event.data === YT.PlayerState.ENDED) {
+                overlay.classList.remove('has-started');
                 ytPlayer.seekTo(0);
                 ytPlayer.pauseVideo();
             }
