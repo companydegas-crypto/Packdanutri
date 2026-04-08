@@ -1727,13 +1727,13 @@ footer p {
 /* --- DISCOUNT BADGE --- */
 .discount-badge {
     display: inline-block;
-    background: #DC2626;
-    color: #fff;
+    background: #FEF9C3;
+    color: var(--text-main);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.04em;
     padding: 3px 9px;
-    border-radius: 100px;
+    border-radius: 4px;
     vertical-align: middle;
     margin-left: 6px;
 }
