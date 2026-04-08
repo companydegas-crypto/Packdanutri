@@ -84,42 +84,43 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = today.toLocaleDateString('pt-BR', options);
     }
 
-    // 5. Hide/Show glass header só após passar pelo botão CTA principal
+    const bonusDateElement = document.getElementById('bonus-date');
+    if (bonusDateElement) {
+        const today = new Date();
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        bonusDateElement.textContent = today.toLocaleDateString('pt-BR', options);
+    }
+
+    // 5. Hide/Show glass header só após a hero INTEIRA sair da viewport
     const header = document.querySelector('.glass-header');
-    const heroBtn = document.querySelector('.hero .btn-large');
+    const heroSection = document.querySelector('.hero');
 
-    if (header && heroBtn) {
-        let ticking = false;
-        // Cache offset to avoid forced reflow on every scroll
-        let cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
-
-        const checkHeaderVisibility = () => {
-            if (window.scrollY > cachedBtnOffset) {
+    if (header && heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            // Quando a hero NÃO está visível, mostra o header
+            if (!entries[0].isIntersecting) {
                 header.classList.remove('hidden');
             } else {
                 header.classList.add('hidden');
             }
-            ticking = false;
-        };
+        }, { threshold: 0 });
 
-        checkHeaderVisibility();
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(checkHeaderVisibility);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        // Recalculate only on resize
-        window.addEventListener('resize', () => {
-            cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
-        }, { passive: true });
+        heroObserver.observe(heroSection);
     }
 
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
     const marquee = document.querySelector('.marquee');
     if (marquee) {
+        const marqueeContent = marquee.querySelector('.marquee-content');
+        if (marqueeContent) {
+            // Duplicar imagens via JS para o loop infinito
+            const items = Array.from(marqueeContent.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                marqueeContent.appendChild(clone);
+            });
+        }
+
         let isDown = false;
         let startX;
         let scrollLeft;
