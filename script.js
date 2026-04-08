@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
 let ytPlayer;
 function onYouTubeIframeAPIReady() {
     ytPlayer = new YT.Player('hero-yt-player', {
-        videoId: '_JCzEUuGvfg',
+        videoId: 'ZSUbrx4WtSE',
         host: 'https://www.youtube-nocookie.com',
         playerVars: {
             'playsinline': 1,

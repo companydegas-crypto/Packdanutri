@@ -452,7 +452,7 @@ section {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 4 / 5; /* Mais compacto para melhorar o LCP */
 }
 
 .video-crop-wrapper {
@@ -467,14 +467,15 @@ section {
     background: #000;
 }
 
-/* Extrapolando o tamanho do YouTube para empurrar o título e logo pra fora da tela */
+/* Ajuste para cobrir a nova proporção sem distorcer e escondendo bordas do YouTube */
 .video-crop-wrapper iframe {
     position: absolute;
-    top: -5%;
-    left: -5%;
-    width: 110%;
-    height: 110%;
-    pointer-events: none; /* Everything handled by overlay! */
+    top: 50%;
+    left: 50%;
+    width: 115%; /* Levemente maior para garantir o crop lateral */
+    height: 205%; /* Calculado para manter 9:16 dentro da "janela" 4:5 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .video-overlay {
@@ -488,7 +489,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('https://i.ytimg.com/vi/_JCzEUuGvfg/hqdefault.jpg') center/cover no-repeat;
+    background: url('https://i.ytimg.com/vi/ZSUbrx4WtSE/hqdefault.jpg') center/cover no-repeat;
     transition: all 0.5s ease;
 }
 
