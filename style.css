@@ -116,21 +116,7 @@ section {
     padding: 5rem 0;
 }
 
-/* Performance: skip rendering for off-screen sections */
-.problem,
-.solution,
-.whats-included,
-.bonus,
-.benefits,
-.how-it-works,
-.testimonials,
-.offer,
-.guarantee,
-.faq,
-.final-cta {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 600px;
-}
+
 
 .section-title {
     font-size: 2.25rem;
