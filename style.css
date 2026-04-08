@@ -367,19 +367,20 @@ section {
 }
 
 .hero .btn-primary {
-    background-color: var(--primary);
+    background-color: #14C757;
     color: #fff;
+    box-shadow: 0 4px 20px rgba(20, 199, 87, 0.45);
 }
 
 @media (hover: hover) {
     .hero .btn-primary:hover {
-        background-color: var(--primary-hover);
-        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+        background-color: #0FA847;
+        box-shadow: 0 8px 28px rgba(20, 199, 87, 0.55);
     }
 }
 
 .hero .btn-primary:active {
-    background-color: var(--primary-hover);
+    background-color: #0FA847;
 }
 
 .hero .microcopy {
@@ -1701,5 +1702,130 @@ footer p {
 
     .for-card h3 {
         font-size: 1rem;
+    }
+}
+
+/* --- VIDEO MICROCOPY --- */
+.video-microcopy {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 0;
+}
+
+.video-microcopy i {
+    font-size: 1rem;
+    color: #6EE7B7;
+}
+
+/* --- DISCOUNT BADGE --- */
+.discount-badge {
+    display: inline-block;
+    background: #DC2626;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 100px;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+/* --- PAYMENT BADGES --- */
+.payment-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+}
+
+.payment-badges img {
+    opacity: 0.75;
+    filter: grayscale(20%);
+    display: inline-block;
+    height: auto;
+}
+
+.pix-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #32BCAD;
+    opacity: 0.85;
+}
+
+/* --- STICKY MOBILE CTA BAR --- */
+.sticky-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky-cta-bar.visible {
+    transform: translateY(0);
+}
+
+.sticky-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.sticky-cta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sticky-cta-price {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.sticky-cta-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.sticky-cta-btn {
+    flex-shrink: 0;
+    padding: 13px 22px !important;
+    font-size: 0.95rem !important;
+    width: auto !important;
+    max-width: none !important;
+    border-radius: 14px !important;
+    background-color: #14C757 !important;
+}
+
+@media (max-width: 991px) {
+    .sticky-cta-bar {
+        display: block;
     }
 }

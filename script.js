@@ -108,6 +108,22 @@ document.addEventListener('DOMContentLoaded', () => {
         heroObserver.observe(heroSection);
     }
 
+    // 5b. Sticky Mobile CTA Bar — aparece após a seção visual-proof
+    const stickyCta = document.getElementById('sticky-cta-bar');
+    const visualProof = document.querySelector('.visual-proof');
+
+    if (stickyCta && visualProof) {
+        const stickyObserver = new IntersectionObserver((entries) => {
+            if (!entries[0].isIntersecting) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        }, { threshold: 0 });
+
+        stickyObserver.observe(visualProof);
+    }
+
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
     const marquee = document.querySelector('.marquee');
     if (marquee) {
