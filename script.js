@@ -91,35 +91,42 @@ document.addEventListener('DOMContentLoaded', () => {
         bonusDateElement.textContent = today.toLocaleDateString('pt-BR', options);
     }
 
-    // 5. Hide/Show glass header só após a hero INTEIRA sair da viewport
+    // 5. Hide/Show glass header só após passar pelo botão CTA principal
     const header = document.querySelector('.glass-header');
-    const heroSection = document.querySelector('.hero');
+    const heroBtn = document.querySelector('.hero .btn-large');
 
-    if (header && heroSection) {
-        const heroObserver = new IntersectionObserver((entries) => {
-            // Quando a hero NÃO está visível, mostra o header
-            if (!entries[0].isIntersecting) {
+    if (header && heroBtn) {
+        let ticking = false;
+        // Cache offset to avoid forced reflow on every scroll
+        let cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
+
+        const checkHeaderVisibility = () => {
+            if (window.scrollY > cachedBtnOffset) {
                 header.classList.remove('hidden');
             } else {
                 header.classList.add('hidden');
             }
-        }, { threshold: 0 });
+            ticking = false;
+        };
 
-        heroObserver.observe(heroSection);
+        checkHeaderVisibility();
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(checkHeaderVisibility);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Recalculate only on resize
+        window.addEventListener('resize', () => {
+            cachedBtnOffset = heroBtn.offsetTop + heroBtn.offsetHeight;
+        }, { passive: true });
     }
 
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
     const marquee = document.querySelector('.marquee');
     if (marquee) {
-        const marqueeContent = marquee.querySelector('.marquee-content');
-        if (marqueeContent) {
-            // Duplicar imagens via JS para o loop infinito
-            const items = Array.from(marqueeContent.children);
-            items.forEach(item => {
-                const clone = item.cloneNode(true);
-                marqueeContent.appendChild(clone);
-            });
-        }
 
         let isDown = false;
         let startX;

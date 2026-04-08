@@ -144,7 +144,7 @@
 
         .glass-header {
             position: fixed;
-            top: 44px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
             width: 92%;
@@ -812,20 +812,9 @@
         <p>&copy; 2026 Pack Nutrição. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Phosphor Icons: carrega lazy para não bloquear renderização -->
-    <script>
-        function loadPhosphor() {
-            var s = document.createElement('script');
-            s.src = 'https://unpkg.com/@phosphor-icons/web';
-            document.body.appendChild(s);
-        }
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(loadPhosphor, { timeout: 1500 });
-        } else {
-            window.addEventListener('load', loadPhosphor);
-        }
-    </script>
-    <script src="script.js?v=2.3" defer></script>
+    <!-- Phosphor Icons: carrega de forma assíncrona mas segura -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <script src="script.js?v=2.4" defer></script>
 </body>
 
 </html>
