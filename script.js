@@ -111,6 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
     const marquee = document.querySelector('.marquee');
     if (marquee) {
+        const marqueeContent = marquee.querySelector('.marquee-content');
+        let resetPoint = 0;
+
+        if (marqueeContent) {
+            // Calcular distância exata antes de duplicar (Width das originais + gap)
+            const gap = parseFloat(window.getComputedStyle(marqueeContent).gap) || 0;
+            resetPoint = marqueeContent.scrollWidth + gap;
+
+            // Duplicar imagens para habilitar o loop perfeito
+            const items = Array.from(marqueeContent.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                marqueeContent.appendChild(clone);
+            });
+        }
 
         let isDown = false;
         let startX;
@@ -125,10 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
         observerMarquee.observe(marquee);
 
         const playMarquee = () => {
-            if (!isDown && isMarqueeVisible) {
+            if (!isDown && isMarqueeVisible && resetPoint > 0) {
                 marquee.scrollLeft += scrollSpeed;
-                if (marquee.scrollLeft >= (marquee.scrollWidth / 2)) {
-                    marquee.scrollLeft = 0;
+                // Reseta preservando o decimal extra da velocidade
+                if (marquee.scrollLeft >= resetPoint) {
+                    marquee.scrollLeft -= resetPoint;
                 }
             }
             autoScrollTimer = requestAnimationFrame(playMarquee);
@@ -157,7 +174,21 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const x = e.pageX - marquee.offsetLeft;
             const walk = (x - startX) * 2;
-            marquee.scrollLeft = scrollLeft - walk;
+            let targetScroll = scrollLeft - walk;
+            
+            // Lógica de wrapping infinito para manual drag
+            if (resetPoint > 0) {
+                if (targetScroll <= 0) {
+                    targetScroll += resetPoint;
+                    startX = e.pageX - marquee.offsetLeft;
+                    scrollLeft = targetScroll;
+                } else if (targetScroll >= resetPoint) {
+                    targetScroll -= resetPoint;
+                    startX = e.pageX - marquee.offsetLeft;
+                    scrollLeft = targetScroll;
+                }
+            }
+            marquee.scrollLeft = targetScroll;
         });
 
         marquee.addEventListener('touchstart', () => stopAutoScroll(), { passive: true });
