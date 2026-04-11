@@ -247,6 +247,38 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         setTimeout(loadYT, 100);
     }
+
+    // 10. Countdown Timer Logic (to Midnight)
+    const updateCountdown = () => {
+        const hoursEl = document.getElementById('timer-hours');
+        const minutesEl = document.getElementById('timer-minutes');
+        const secondsEl = document.getElementById('timer-seconds');
+
+        if (!hoursEl || !minutesEl || !secondsEl) return;
+
+        const now = new Date();
+        const midnight = new Date();
+        midnight.setHours(24, 0, 0, 0); // Next midnight
+
+        let diff = midnight.getTime() - now.getTime();
+        
+        // Se por algum motivo o diff for negativo (ex: exato momento da meia noite), soma 24h
+        if (diff <= 0) {
+            midnight.setDate(midnight.getDate() + 1);
+            diff = midnight.getTime() - now.getTime();
+        }
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        hoursEl.textContent = hours.toString().padStart(2, '0');
+        minutesEl.textContent = minutes.toString().padStart(2, '0');
+        secondsEl.textContent = seconds.toString().padStart(2, '0');
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 });
 
 // YouTube Player Initializer

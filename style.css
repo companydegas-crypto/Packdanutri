@@ -1227,6 +1227,43 @@ section {
     box-shadow: var(--shadow-xl);
 }
 
+.countdown-container {
+    background: #FFF1F2;
+    border: 1px dashed #FDA4AF;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.timer-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #E11D48;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timer-display {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #BE123C;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    line-height: 1;
+}
+
+.timer-display span {
+    min-width: 1.5ch;
+    display: inline-block;
+}
+
 .offer-intro {
     font-size: 1.05rem;
     font-weight: 500;
