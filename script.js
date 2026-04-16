@@ -1,35 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 0. Countdown Timer Logic (to Midnight)
-    const updateCountdown = () => {
-        const hoursEl = document.getElementById('timer-hours');
-        const minutesEl = document.getElementById('timer-minutes');
-        const secondsEl = document.getElementById('timer-seconds');
 
-        if (!hoursEl || !minutesEl || !secondsEl) return;
-
-        const now = new Date();
-        const midnight = new Date();
-        midnight.setHours(24, 0, 0, 0); // Next midnight
-
-        let diff = midnight.getTime() - now.getTime();
-        
-        if (diff <= 0) {
-            midnight.setDate(midnight.getDate() + 1);
-            diff = midnight.getTime() - now.getTime();
-        }
-
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        hoursEl.textContent = hours.toString().padStart(2, '0');
-        minutesEl.textContent = minutes.toString().padStart(2, '0');
-        secondsEl.textContent = seconds.toString().padStart(2, '0');
-    };
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
 
     // 1. Scroll Reveal Animations
     const observerOptions = {
@@ -142,10 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play)
-    const marquee = document.querySelector('.marquee');
-    if (marquee) {
+    // 6. Configurando Marquee rápido manual/auto (Draggable + Auto-play) - MULTIPLE SUPPORT
+    const marquees = document.querySelectorAll('.marquee');
+    marquees.forEach(marquee => {
         const marqueeContent = marquee.querySelector('.marquee-content');
         let resetPoint = 0;
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let autoScrollTimer;
+        let isMarqueeVisible = false;
+        const scrollSpeed = 0.8;
 
         if (marqueeContent) {
             // Calcular distância exata antes de duplicar (Width das originais + gap)
@@ -160,13 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 marqueeContent.appendChild(clone);
             });
         }
-
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let autoScrollTimer;
-        let isMarqueeVisible = false;
-        const scrollSpeed = 0.8;
 
         const observerMarquee = new IntersectionObserver((entries) => {
             isMarqueeVisible = entries[0].isIntersecting;
@@ -226,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         marquee.addEventListener('touchstart', () => stopAutoScroll(), { passive: true });
         marquee.addEventListener('touchend', () => startAutoScroll(), { passive: true });
-    }
+    });
 
     // 7. Sistema Interativo de Likes para Prova Social
     const likeButtons = document.querySelectorAll('.like-btn');

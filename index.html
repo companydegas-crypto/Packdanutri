@@ -61,10 +61,10 @@
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, .04);
             --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, .08);
             --shadow-lg: 0 8px 24px -4px rgba(0, 0, 0, .1);
-            --radius-sm: 10px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 10px;
+            --radius-xl: 12px;
             --transition: all .3s cubic-bezier(.4, 0, .2, 1)
         }
 
@@ -153,7 +153,7 @@
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, .5);
-            border-radius: 100px;
+            border-radius: 10px;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
             transition: transform .4s cubic-bezier(.4, 0, .2, 1), opacity .4s ease
@@ -186,7 +186,7 @@
         .btn-small {
             padding: 10px 20px;
             font-size: .875rem;
-            border-radius: 100px;
+            border-radius: 8px;
             width: auto;
             max-width: none
         }
@@ -196,7 +196,7 @@
             padding-top: 4rem !important;
             padding-bottom: 4rem;
             overflow: hidden;
-            background: linear-gradient(135deg, #021a12, #03251a, #022e1e)
+            background: #FFFFFF
         }
 
         .hero-container {
@@ -212,7 +212,7 @@
             letter-spacing: -.03em;
             line-height: 1.25;
             margin: 0;
-            color: #fff
+            color: #1C1C1E
         }
 
         .btn {
@@ -220,7 +220,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px 32px;
-            border-radius: 16px;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 1.05rem;
             transition: var(--transition);
@@ -298,8 +298,7 @@
     <!-- 1. Hero Section -->
     <section class="hero" id="hero">
         <div class="container hero-container">
-            <h1 class="reveal"><span class="highlight-text">+200 posts prontos e editáveis</span> para você postar em
-                minutos e deixar seu Instagram mais profissional</h1>
+            <h1 class="reveal"><span class="highlight-text">+200 posts prontos e editáveis</span> para deixar seu Instagram profissional e atrair pacientes.</h1>
 
             <div class="hero-video-container reveal-right">
                 <div class="video-crop-wrapper">
@@ -315,21 +314,21 @@
             </div>
 
             <div class="hero-content">
-                <p class="subheadline reveal" style="--delay: 0.1s">Receba +200 posts totalmente editáveis no Canva e
-                    poste com mais constância, mais profissionalismo e sem perder horas criando conteúdo.</p>
+                <p class="subheadline reveal" style="--delay: 0.1s">Receba +200 posts totalmente editáveis e profissionais. Escolha um modelo, edite em 2 minutos e poste.</p>
 
                 <ul class="hero-benefits reveal" style="--delay: 0.3s">
                     <li><i class="ph-fill ph-check-circle"></i> Poste como profissional mesmo sem saber design</li>
+                    <li><i class="ph-fill ph-check-circle"></i> Poste sem precisar aparecer</li>
                     <li><i class="ph-fill ph-check-circle"></i> Economize horas criando conteúdo do zero</li>
                     <li><i class="ph-fill ph-check-circle"></i> Funciona no celular e no computador</li>
                 </ul>
 
                 <div class="cta-wrapper reveal" style="--delay: 0.4s">
                     <a href="#offer" class="btn btn-primary btn-large glow-effect">
-                        QUERO ACESSAR MINHAS ARTES AGORA
+                        BAIXAR MEUS POSTS AGORA
                     </a>
                     <p class="microcopy">
-                        <i class="ph ph-lock-key"></i> Acesso imediato | Pagamento único.
+                        <i class="ph ph-lightning"></i> Acesso imediato | Receba no e-mail
                     </p>
                 </div>
             </div>
@@ -339,9 +338,7 @@
     <!-- 2. Prova Visual -->
     <section class="visual-proof">
         <div class="container visual-proof-container reveal">
-            <h2 class="section-title text-center">Veja alguns modelos que você recebe</h2>
-            <p class="section-subtitle text-center">Esses são alguns dos modelos que você vai receber e poderá editar em
-                poucos minutos.</p>
+            <h2 class="section-title text-center">Veja o que você recebe agora</h2>
             <div class="included-stats" style="margin-bottom: 2rem;">
                 <div class="stat-box"><strong>+200</strong><span>Modelos Estratégicos</span></div>
             </div>
@@ -350,7 +347,7 @@
                     <picture>
                         <source type="image/webp"
                             srcset="assets/carousel_1-mobile.webp 400w, assets/carousel_1.webp 600w" sizes="280px"><img
-                            src="assets/carousel_1.jpg" alt="Exemplos de posts" loading="lazy" decoding="async"
+                            src="assets/carousel_1.jpg?v=1.1" alt="Exemplos de posts" loading="lazy" decoding="async"
                             width="280" height="280">
                     </picture>
                     <picture>
@@ -380,13 +377,54 @@
                 </div>
             </div>
 
+            <p class="mobile-only-text text-center">
+                <i class="ph-fill ph-arrows-out-line-horizontal"></i> Arraste para o lado para ver
+            </p>
+
+            <div class="marquee" style="margin-top: 1.5rem;">
+                <div class="marquee-content">
+                    <picture>
+                        <source srcset="assets/carousel_6.webp" type="image/webp">
+                        <img src="assets/carousel_6.jpg" alt="Post sobre café" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_7.webp" type="image/webp">
+                        <img src="assets/carousel_7.jpg" alt="Post reeducação alimentar" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_8.webp" type="image/webp">
+                        <img src="assets/carousel_8.jpg" alt="Post benefícios da beterraba" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_9.webp" type="image/webp">
+                        <img src="assets/carousel_9.jpg" alt="Post nutrição e imunidade" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_10.webp" type="image/webp">
+                        <img src="assets/carousel_10.jpg" alt="Post treino e dieta" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_11.webp" type="image/webp">
+                        <img src="assets/carousel_11.jpg" alt="Post suco detox" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_12.webp" type="image/webp">
+                        <img src="assets/carousel_12.jpg" alt="Quiz alimentação saudável" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_13.webp" type="image/webp">
+                        <img src="assets/carousel_13.jpg" alt="Post saúde do intestino" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                    <picture>
+                        <source srcset="assets/carousel_14.webp" type="image/webp">
+                        <img src="assets/carousel_14.jpg" alt="Post consistência e dieta" loading="lazy" decoding="async" width="280" height="280">
+                    </picture>
+                </div>
+            </div>
+
             <p class="text-center"
                 style="margin-top: 1.5rem; font-weight: 700; color: var(--text-main); font-size: 1.1rem;">
                 Todos disponíveis na versão <span style="color: var(--primary);">gratuita</span> do Canva
-            </p>
-
-            <p class="mobile-only-text text-center">
-                <i class="ph-fill ph-arrows-out-line-horizontal"></i> Arraste para o lado para ver
             </p>
         </div>
     </section>
@@ -394,12 +432,12 @@
     <!-- 3. Problema -->
     <section class="problem bg-light" id="problem">
         <div class="container">
-            <h2 class="section-title text-center reveal">Se você é nutricionista, provavelmente já passou por isso:</h2>
+            <h2 class="section-title text-center reveal">Você se identifica com algum desses?</h2>
             <div class="grid grid-3 problem-grid">
                 <div class="card problem-card reveal-up" style="--delay: 0.1s">
-                    <div class="icon-box danger"><i class="ph ph-clock-countdown"></i></div>
-                    <h3>Você perde muito tempo</h3>
-                    <p>Abre o Canva e demora demais para criar um único post.</p>
+                    <div class="icon-box danger"><i class="ph ph-eye-slash"></i></div>
+                    <h3>Seu perfil não parece profissional</h3>
+                    <p>Os posts não transmitem autoridade e parecem amadores.</p>
                 </div>
                 <div class="card problem-card reveal-up" style="--delay: 0.2s">
                     <div class="icon-box danger"><i class="ph ph-brain"></i></div>
@@ -407,223 +445,87 @@
                     <p>Falta ideia e o Instagram fica dias parado.</p>
                 </div>
                 <div class="card problem-card reveal-up" style="--delay: 0.3s">
-                    <div class="icon-box danger"><i class="ph ph-eye-slash"></i></div>
-                    <h3>Seu perfil não parece profissional</h3>
-                    <p>Os posts não transmitem autoridade e parecem amadores.</p>
-                </div>
-                <div class="card problem-card reveal-up" style="--delay: 0.4s">
-                    <div class="icon-box danger"><i class="ph ph-trend-down"></i></div>
-                    <h3>Você não tem consistência</h3>
-                    <p>Posta um dia e depois some.</p>
+                    <div class="icon-box danger"><i class="ph ph-clock-countdown"></i></div>
+                    <h3>Você perde muito tempo</h3>
+                    <p>Abre o Canva e demora demais para criar um único post.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Solução -->
-    <section class="solution text-center" id="solution">
+    <!-- Solução -->
+    <section class="solution-short text-center">
         <div class="container reveal">
-            <div class="solution-content">
-                <div class="icon-badge"><i class="ph-fill ph-sparkle"></i> A Solução</div>
-                <h2 class="section-title">Agora você pode ter um Instagram profissional em minutos</h2>
-                <p class="section-subtitle">Você só escolhe um modelo, ajusta seu conteúdo e posta. Sem complicação, sem
-                    perder tempo, como se tivesse alguém fazendo isso por você.</p>
-
-                <div class="solution-benefits">
-                    <span class="pill"><i class="ph-fill ph-check"></i> Posts prontos</span>
-                    <span class="pill"><i class="ph-fill ph-check"></i> Visual profissional</span>
-                    <span class="pill"><i class="ph-fill ph-check"></i> Rápido de usar</span>
-                    <span class="pill"><i class="ph-fill ph-check"></i> Funciona no Canva Free</span>
-                    <span class="pill"><i class="ph-fill ph-check"></i> Economiza tempo</span>
-                </div>
+            <h2 class="section-title">O Pack da Nutri resolve isso pra você</h2>
+            <p class="section-subtitle">São <strong>+200 posts prontos e editáveis no Canva</strong> é só escolher, editar e postar. Sem precisar aparecer, sem perder horas criando do zero.</p>
+            <div class="solution-pills">
+                <span class="pill"><i class="ph-fill ph-check"></i> Posts prontos</span>
+                <span class="pill"><i class="ph-fill ph-check"></i> Sem precisar aparecer</span>
+                <span class="pill"><i class="ph-fill ph-check"></i> Edita em 2 minutos</span>
+                <span class="pill"><i class="ph-fill ph-check"></i> Funciona no Canva gratuito</span>
             </div>
         </div>
     </section>
 
-    <!-- 5. O que você recebe -->
-    <section class="whats-included bg-light" id="included">
-        <div class="container">
-            <h2 class="section-title text-center reveal">O que você recebe ao entrar hoje</h2>
-
-            <div class="included-stats reveal">
-                <div class="stat-box"><strong>+200</strong><span>Posts Prontos para Nutricionistas</span></div>
-            </div>
-
-            <div class="pack-description-block reveal-up">
-                <p class="pack-description-text">
-                    O Pack da Nutri traz <strong>+200 templates prontos e editáveis no Canva</strong> prontos para você
-                    copiar e colar, criados especialmente para nutricionistas que querem um <strong>feed profissional,
-                        estratégico e que atrai pacientes</strong>, sem precisar aparecer ou perder horas criando
-                    conteúdo.
-                </p>
-            </div>
-
-            <div class="text-center mt-large reveal">
-                <a href="#offer" class="btn btn-primary">Quero todo esse material</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Bônus -->
-    <section class="bonus bg-light" id="bonus">
-        <div class="container">
-            <h2 class="section-title text-center reveal">E além dos 200 modelos, você ainda recebe <span
-                    class="highlight-text">7 bônus exclusivos</span></h2>
-            <div class="grid grid-2 bonus-grid">
-                <div class="card bonus-card reveal-up" style="--delay: 0.1s">
-                    <div class="bonus-badge">Bônus 1</div>
-                    <i class="ph-duotone ph-calendar-blank icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">Plano de Conteúdo Estratégico (30 dias)</h3>
-                    <p>Saiba exatamente o que postar todos os dias.</p>
+    <!-- Bônus -->
+    <section class="bonus" id="bonus">
+        <div class="container reveal">
+            <h2 class="section-title text-center">E além dos 200 modelos, você ainda recebe <span class="highlight-text">7 bônus exclusivos</span></h2>
+            <div class="bonus-compact-list">
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.1s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-calendar-blank"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>Plano de Conteúdo Estratégico (30 dias)</strong>
+                        <span>Saiba exatamente o que postar todos os dias.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.2s">
-                    <div class="bonus-badge">Bônus 2</div>
-                    <i class="ph-duotone ph-text-align-left icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">+30 Legendas que Geram Direct</h3>
-                    <p>Legendas que engajam seu perfil</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.15s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-text-align-left"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>+30 Legendas que Geram Direct</strong>
+                        <span>Legendas que engajam seu perfil.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.3s">
-                    <div class="bonus-badge">Bônus 3</div>
-                    <i class="ph-duotone ph-brain icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">Guia de Persuasão para Nutricionistas</h3>
-                    <p>Domine a psicologia de vendas e dobre sua conversão</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.2s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-brain"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>Guia de Persuasão para Nutricionistas</strong>
+                        <span>Domine a psicologia de vendas e dobre sua conversão.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.4s">
-                    <div class="bonus-badge">Bônus 4</div>
-                    <i class="ph-duotone ph-video-camera icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">30 Ideias de Stories/Reels</h3>
-                    <p>Roteiros que conectam e atrai pacientes</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.25s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-video-camera"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>30 Ideias de Stories/Reels</strong>
+                        <span>Roteiros que conectam e atraem pacientes.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.5s">
-                    <div class="bonus-badge">Bônus 5</div>
-                    <i class="ph-duotone ph-chat-circle-question icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">Modelos de Caixinha Estratégica</h3>
-                    <p>Torne o perfil profissional com identidade única</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.3s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-chat-dots"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>Modelos de Caixinha Estratégica</strong>
+                        <span>Torne o perfil profissional com identidade única.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.6s">
-                    <div class="bonus-badge">Bônus 6</div>
-                    <i class="ph-duotone ph-fork-knife icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">Cardápio Semanal Estratégico</h3>
-                    <p>Entregue mais valor aos seus pacientes.</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.35s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-fork-knife"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>Cardápio Semanal Estratégico</strong>
+                        <span>Entregue mais valor aos seus pacientes.</span>
+                    </div>
                 </div>
-                <div class="card bonus-card reveal-up" style="--delay: 0.7s">
-                    <div class="bonus-badge">Bônus 7</div>
-                    <i class="ph-duotone ph-circles-three icon-large"></i>
-                    <h3 style="font-size: 1.25rem;">Capas de Destaque Profissionais</h3>
-                    <p>Organize seu perfil e Transmita muito mais autoridade</p>
+                <div class="bonus-compact-item reveal-up" style="--delay: 0.4s">
+                    <div class="bonus-compact-icon"><i class="ph-duotone ph-circles-three"></i></div>
+                    <div class="bonus-compact-text">
+                        <strong>Capas de Destaque Profissionais</strong>
+                        <span>Organize seu perfil e transmita muito mais autoridade.</span>
+                    </div>
                 </div>
             </div>
-
 
             <p class="text-center"
                 style="color: #ff0000; font-weight: 700; margin-top: 2rem; font-size: 1.1rem; margin-bottom: 0;">
                 Bônus disponíveis apenas hoje <strong id="bonus-date"></strong>
-            </p>
-        </div>
-    </section>
-
-    <!-- 8. Benefícios -->
-    <section class="benefits bg-light" id="benefits" style="padding-top: 1rem;">
-        <div class="container reveal">
-            <div class="benefits-layout">
-                <div class="benefits-image">
-                    <picture>
-                        <source type="image/webp"
-                            srcset="assets/benefits-mockup-mobile.webp 400w, assets/benefits-mockup.webp 600w"
-                            sizes="(max-width: 768px) 100vw, 50vw">
-                        <img src="assets/benefits-mockup.png"
-                            alt="Posts prontos para nutricionistas em notebook e celular" loading="lazy"
-                            decoding="async" width="600" height="500">
-                    </picture>
-                </div>
-                <div class="benefits-content">
-                    <h2 class="section-title">Por que isso pode transformar seu Instagram</h2>
-                    <ul class="benefit-list">
-                        <li>
-                            <i class="ph-fill ph-check-circle"></i>
-                            <div>
-                                <strong>Economize tempo</strong>
-                                <span>Chega de ficar horas tentando criar um único post.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="ph-fill ph-check-circle"></i>
-                            <div>
-                                <strong>Passe mais profissionalismo</strong>
-                                <span>Seu perfil vai transmitir a mesma qualidade das suas consultas.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="ph-fill ph-check-circle"></i>
-                            <div>
-                                <strong>Poste com mais frequência</strong>
-                                <span>Com tudo pronto, fica fácil manter a constância.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="ph-fill ph-check-circle"></i>
-                            <div>
-                                <strong>Tenha mais organização</strong>
-                                <span>Planeje suas postagens da semana em poucos minutos.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="ph-fill ph-check-circle"></i>
-                            <div>
-                                <strong>Facilite sua rotina</strong>
-                                <span>Menos trabalho criando conteúdo, mais tempo para o que importa.</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. Como Funciona -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container reveal">
-            <details class="how-it-works-accordion">
-                <summary class="accordion-header" style="justify-content: center; cursor: pointer; list-style: none;">
-                    <h2 class="section-title text-center" style="margin-bottom: 0;">Como funciona na prática</h2>
-                    <i class="ph ph-caret-down" style="font-size: 1.5rem; margin-left: 10px;"></i>
-                </summary>
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <i class="ph-duotone ph-shopping-cart"></i>
-                        <h3>Compre</h3>
-                        <p>Pagamento rápido e seguro.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <i class="ph-duotone ph-envelope-open"></i>
-                        <h3>Receba acesso imediato</h3>
-                        <p>O link chega no seu email na hora.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <i class="ph-duotone ph-paint-brush"></i>
-                        <h3>Abra no Canva</h3>
-                        <p>Importe os modelos com 1 clique.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <i class="ph-duotone ph-text-aa"></i>
-                        <h3>Edite</h3>
-                        <p>Coloque seu conteúdo e personalize.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">5</div>
-                        <i class="ph-duotone ph-upload-simple"></i>
-                        <h3>Poste</h3>
-                        <p>Pronto. Seu Instagram fica profissional.</p>
-                    </div>
-                </div>
-            </details>
-            <p class="text-center"
-                style="margin-top: 2.5rem; font-weight: 700; font-size: 1.1rem; color: var(--primary);">
-                <i class="ph-fill ph-device-mobile" style="margin-right: 6px;"></i> Funciona no celular e no computador
             </p>
         </div>
     </section>
@@ -636,22 +538,26 @@
                 <div class="prints-carousel">
                     <picture>
                         <source type="image/webp" srcset="assets/print1-mobile.webp 400w, assets/print1.webp 600w"
-                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print1.png" alt="Avaliação 1"
+                            sizes="(max-width: 768px) 80vw, 300px">
+                        <img src="assets/print1.webp?v=1.1" alt="Avaliação 1"
                             loading="lazy" decoding="async" width="300" height="420">
                     </picture>
                     <picture>
                         <source type="image/webp" srcset="assets/print2-mobile.webp 400w, assets/print2.webp 600w"
-                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print2.png" alt="Avaliação 2"
+                            sizes="(max-width: 768px) 80vw, 300px">
+                        <img src="assets/print2.webp" alt="Avaliação 2"
                             loading="lazy" decoding="async" width="300" height="420">
                     </picture>
                     <picture>
                         <source type="image/webp" srcset="assets/print3-mobile.webp 400w, assets/print3.webp 600w"
-                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print3.png" alt="Avaliação 3"
+                            sizes="(max-width: 768px) 80vw, 300px">
+                        <img src="assets/print3.webp" alt="Avaliação 3"
                             loading="lazy" decoding="async" width="300" height="420">
                     </picture>
                     <picture>
                         <source type="image/webp" srcset="assets/print4-mobile.webp 400w, assets/print4.webp 600w"
-                            sizes="(max-width: 768px) 80vw, 300px"><img src="assets/print4.png" alt="Avaliação 4"
+                            sizes="(max-width: 768px) 80vw, 300px">
+                        <img src="assets/print4.webp" alt="Avaliação 4"
                             loading="lazy" decoding="async" width="300" height="420">
                     </picture>
                 </div>
@@ -668,21 +574,12 @@
 
 
 
-    <!-- 11. Oferta -->
+    <!-- Garantia + Oferta -->
     <section class="offer" id="offer">
         <div class="container reveal">
             <div class="offer-card">
                 <div class="offer-content">
-                    <div id="countdown-timer" class="countdown-container">
-                        <p class="timer-label"><i class="ph-fill ph-clock"></i> A oferta encerra em:</p>
-                        <div class="timer-display">
-                            <span id="timer-hours">00</span>:
-                            <span id="timer-minutes">00</span>:
-                            <span id="timer-seconds">00</span>
-                        </div>
-                    </div>
-
-                    <div style="background: #F9FAFB; border-radius: 16px; padding: 24px 20px; margin-bottom: 1.5rem;">
+                    <div style="background: #F9FAFB; border-radius: 8px; padding: 24px 20px; margin-bottom: 1.5rem;">
                         <div class="price-anchor"><s>Preço original: R$ 97,00</s> <span class="discount-badge">ECONOMIZE
                                 R$ 60 HOJE</span></div>
                         <p
@@ -717,7 +614,7 @@
 
                     <a href="https://pagamento.packdanutri.site/checkout/208728958:1" id="checkout-btn"
                         class="btn btn-primary btn-large glow-effect w-full">
-                        Quero meu acesso agora
+                        BAIXAR AGORA
                     </a>
 
                     <div class="secure-checkout">
@@ -729,12 +626,13 @@
                         <i class="ph-fill ph-envelope-simple" style="color: var(--primary);"></i>
                         <span>Chega no seu E-mail!</span>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 12. Garantia -->
+    <!-- Garantia -->
     <section class="guarantee bg-light">
         <div class="container guarantee-container reveal">
             <div class="guarantee-icon">
@@ -807,16 +705,7 @@
         </div>
     </section>
 
-    <!-- 14. Final CTA -->
-    <section class="final-cta text-center">
-        <div class="container reveal">
-            <h2>Seu Instagram não precisa continuar parado ou com cara de amador.</h2>
-            <p>Comece a postar com mais facilidade e mais profissionalismo hoje.</p>
-            <a href="#offer" class="btn btn-primary btn-large glow-effect mt-large">
-                Quero começar agora
-            </a>
-        </div>
-    </section>
+
 
     <footer class="text-center">
         <div class="footer-links">
