@@ -199,42 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
         marquee.addEventListener('touchend', () => startAutoScroll(), { passive: true });
     });
 
-    // 7. Sistema Interativo de Likes para Prova Social
-    const likeButtons = document.querySelectorAll('.like-btn');
-    likeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const isLiked = btn.getAttribute('data-liked') === 'true';
-            let currentLikes = parseInt(btn.getAttribute('data-likes'), 10);
-            const countSpan = btn.querySelector('.like-count');
-            const icon = btn.querySelector('i');
 
-            if (isLiked) {
-                currentLikes -= 1;
-                btn.setAttribute('data-liked', 'false');
-                icon.classList.remove('ph-fill');
-                icon.classList.add('ph');
-            } else {
-                currentLikes += 1;
-                btn.setAttribute('data-liked', 'true');
-                icon.classList.remove('ph');
-                icon.classList.add('ph-fill');
-            }
 
-            btn.setAttribute('data-likes', currentLikes);
-            countSpan.textContent = currentLikes;
-        });
-    });
 
-    // 8. Prefetch do Checkout ao hover (navegadores sem Speculation Rules)
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('mouseenter', function () {
-            const prefetch = document.createElement('link');
-            prefetch.rel = 'prefetch';
-            prefetch.href = this.href;
-            document.head.appendChild(prefetch);
-        }, { once: true });
-    }
 
     // 9. Load YouTube Iframe API lazily without huge delay so it's ready when clicked
     const loadYT = () => {
@@ -244,11 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     };
 
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadYT, { timeout: 500 });
-    } else {
-        setTimeout(loadYT, 100);
-    }
+    window.addEventListener('load', function() {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadYT);
+        } else {
+            setTimeout(loadYT, 100);
+        }
+    });
 });
 
 // YouTube Player Initializer
