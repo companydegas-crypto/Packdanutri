@@ -78,13 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Update dynamic date in urgency banner
-    const dateElement = document.getElementById('current-date');
-    if (dateElement) {
-        const today = new Date();
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-        dateElement.textContent = today.toLocaleDateString('pt-BR', options);
-    }
+
 
     const bonusDateElement = document.getElementById('bonus-date');
     if (bonusDateElement) {
