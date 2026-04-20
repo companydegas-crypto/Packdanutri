@@ -249,6 +249,19 @@ section {
     color: var(--danger);
 }
 
+.icon-box.success {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+/* --- FEATURES --- */
+.features {
+    padding: 4rem 0;
+}
+
+.feature-card h3 {
+    margin-bottom: 0.5rem;
+}
 
 /* --- URGENCY BANNER --- */
 .urgency-banner {
@@ -945,7 +958,7 @@ section {
 }
 
 
-.bonus, .testimonials, .faq, .guarantee {
+.bonus, .testimonials, .faq, .guarantee, .features {
     content-visibility: auto;
     contain-intrinsic-size: 1px 500px;
 }
