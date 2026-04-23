@@ -59,14 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
 
                 if (targetId === '#offer') {
-                    // Scroll para que o botão de checkout fique visível na tela
-                    const checkoutBtn = document.getElementById('checkout-btn');
-                    if (checkoutBtn) {
-                        const btnRect = checkoutBtn.getBoundingClientRect();
-                        const btnAbsBottom = window.scrollY + btnRect.bottom;
-                        // Posiciona para que o botão fique com ~80px de margem do fundo da viewport
-                        const scrollTo = btnAbsBottom - window.innerHeight + 80;
-                        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+                    // Scroll para centralizar o card de oferta na tela, otimizado para mobile
+                    const offerCard = document.querySelector('.offer-card');
+                    if (offerCard) {
+                        offerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     } else {
                         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
