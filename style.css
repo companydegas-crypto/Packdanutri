@@ -946,10 +946,11 @@ section {
 }
 
 
-.bonus, .testimonials, .faq, .guarantee, .features {
+/* Optimization removed to fix scroll issues */
+/* .bonus, .testimonials, .faq, .guarantee, .features {
     content-visibility: auto;
     contain-intrinsic-size: 1px 500px;
-}
+} */
 
 
 /* --- GARANTIA --- */

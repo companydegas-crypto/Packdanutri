@@ -59,13 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
 
                 if (targetId === '#offer') {
-                    // Scroll para centralizar o card de oferta na tela, otimizado para mobile
-                    const offerCard = document.querySelector('.offer-card');
-                    if (offerCard) {
-                        offerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    // Pequeno delay para garantir que qualquer transição de layout (como o header aparecendo) já tenha ocorrido
+                    setTimeout(() => {
+                        const priceContainer = document.querySelector('.price-container');
+                        if (priceContainer) {
+                            const rect = priceContainer.getBoundingClientRect();
+                            const winHeight = window.innerHeight;
+                            const scrollPos = window.scrollY + rect.top - (winHeight / 2) + (rect.height / 2);
+                            window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+                            
+                            // Backup: Se não chegar perto o suficiente em 800ms, tenta de novo
+                            setTimeout(() => {
+                                const rectRetry = priceContainer.getBoundingClientRect();
+                                const currentScroll = window.scrollY;
+                                const targetScroll = currentScroll + rectRetry.top - (winHeight / 2) + (rectRetry.height / 2);
+                                if (Math.abs(currentScroll - targetScroll) > 50) {
+                                    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                                }
+                            }, 800);
+                        } else {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 50);
                 } else {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
